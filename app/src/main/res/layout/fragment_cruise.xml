@@ -1,0 +1,218 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cruise_frag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.castelcode.cruisecompanion.trip_info_add_activity.CruiseFragment"
+    android:background="@android:color/black">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="10dip">
+
+                <TextView
+                    android:id="@+id/name_label"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/cruise_line_name_label"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginEnd="10dip"/>
+
+                <EditText
+                    android:id="@+id/name_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dip"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="textCapWords"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="10dip">
+
+                <TextView
+                    android:id="@+id/ship_name_label"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/ship_name_label"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginEnd="10dip"/>
+
+                <EditText
+                    android:id="@+id/ship_name_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dip"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="textCapWords"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="10dip">
+
+                <TextView
+                    android:id="@+id/room_number_label"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/room_number_label"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginEnd="10dip"/>
+
+                <EditText
+                    android:id="@+id/room_number_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dip"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="10dip">
+
+                <TextView
+                    android:id="@+id/cruise_departure_date_label"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/departure_date_label"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginEnd="10dip"/>
+
+                <Button
+                    android:id="@+id/cruise_departure_date_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dip"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/black"
+                    android:text="@string/select_date"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="10dip">
+
+                <TextView
+                    android:id="@+id/cruise_departure_time_label"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/departure_time_label"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginEnd="10dip"/>
+
+                <Button
+                    android:id="@+id/cruise_departure_time_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dip"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/black"
+                    android:text="@string/select_time"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="10dip">
+
+                <TextView
+                    android:id="@+id/confirmation_number_label"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/confirmation_number_label"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginEnd="10dip"/>
+
+                <EditText
+                    android:id="@+id/confrimation_code_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dip"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_margin="10dip">
+
+                <TextView
+                    android:id="@+id/phone_number_label"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="@string/phone_number_label"
+                    android:textColor="@color/textColor"
+                    android:layout_marginRight="10dip"
+                    android:layout_marginEnd="10dip"/>
+
+                <EditText
+                    android:id="@+id/phone_number_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dip"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:inputType="phone"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context="com.castelcode.cruisecompanion.tile_activities.UnitConverter"
+    android:orientation="vertical"
+    android:id="@+id/unit_converter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dip">
+        <Spinner
+            android:id="@+id/conversion_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border">
+        </Spinner>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:padding="5dip">
+
+        <EditText
+            android:id="@+id/original_value"
+            android:layout_width="0dp"
+            android:layout_weight="1.6"
+            android:layout_height="35dip"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAlignment="center"/>
+
+        <Spinner
+            android:id="@+id/original_unit"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
+            android:background="@drawable/spinner_border"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dip">
+
+        <android.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/swap_origin_with_destination"
+            android:layout_width="55dp"
+            android:layout_height="53dp"
+            android:layout_gravity="end"
+            android:background="@drawable/up_down_arrow"
+            android:gravity="end" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:padding="5dip">
+
+        <EditText
+            android:id="@+id/desired_value"
+            android:layout_width="0dp"
+            android:layout_weight="1.6"
+            android:layout_height="35dp"
+            android:ems="10"
+            android:background="@android:color/white"
+            android:inputType="numberDecimal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textAlignment="center"/>
+
+        <Spinner
+            android:id="@+id/desired_unit"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/disclaimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currency_update_message"
+        android:textAlignment="center"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+</LinearLayout>

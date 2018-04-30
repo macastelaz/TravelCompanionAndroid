@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.castelcode.cruisecompanion">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/my_backup_rules">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.myfileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".HomePage"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".tile_activities.CruiseSettings"
+            android:label="@string/settings_page_title" />
+        <activity
+            android:name=".tile_activities.UnitConverter"
+            android:label="@string/unit_converter_page_title" />
+        <activity
+            android:name=".tile_activities.DrinkCounter"
+            android:label="@string/drink_counter_page_title" />
+        <activity
+            android:name=".tile_activities.TripAgenda"
+            android:label="@string/trip_agenda_page_title" />
+        <activity
+            android:name=".tile_activities.TripLog"
+            android:label="@string/trip_log_page_title" />
+        <activity
+            android:name=".tile_activities.Expenses"
+            android:label="@string/expenses_page_title" />
+        <activity
+            android:name=".tile_activities.TripInformation"
+            android:parentActivityName=".HomePage"
+            android:label="@string/trip_information_page_title" />
+        <activity
+            android:name=".trip_info_add_activity.AddTripInfoItem"
+            android:label="@string/add_trip_information_page_title" />
+        <activity
+            android:name=".log_entry_add_activity.AddLogEntry"
+            android:label="@string/add_log_entry_page_title" />
+        <activity
+            android:name=".agenda_entry.DateEntryActivity"
+            android:label="@string/add_date_entry_page_title" />
+        <activity
+            android:name=".trip_info_share_activity.ShareTripInfo"
+            android:label="@string/title_activity_share_trip_info"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".preferences.SelectNotificationPreferences"
+            android:label="@string/notifications_preferences_page_title" />
+        <receiver android:name=".utils.WakefulReceiver"/>
+
+        <receiver android:name=".utils.BootReceiver"
+            android:enabled="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

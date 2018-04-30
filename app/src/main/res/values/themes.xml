@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="prefScreen">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorSecondary">@color/textColor</item>
+    </style>
+    <style name="customPicker">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColorSecondary">@color/textColor</item>
+    </style>
+</resources>

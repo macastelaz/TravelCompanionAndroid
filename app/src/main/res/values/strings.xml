@@ -1,0 +1,255 @@
+<resources  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Cruise Companion</string>
+    <string name="home_page_title">Home</string>
+    <string name="settings_page_title">Settings</string>
+    <string name="unit_converter_page_title">Unit Conversion</string>
+    <string name="drink_counter_page_title">Drink Counter</string>
+    <string name="trip_agenda_page_title">Trip Agenda</string>
+    <string name="trip_log_page_title">Trip Log</string>
+    <string name="expenses_page_title">Expenses</string>
+    <string name="trip_information_page_title">Trip Information</string>
+    <string name="add_trip_information_page_title">Add Trip Information</string>
+    <string name="add_log_entry_page_title">Add Log Entry</string>
+    <string name="add_date_entry_page_title">Add Agenda Item</string>
+    <string name="notifications_preferences_page_title">Notification settings</string>
+
+    <string name="preference_file_key">com.castelcode.cruisecompanion.PREFERENCE_FILE_KEY</string>
+    <string name="date_key">cruiseDate</string>
+    <string name="date_title">Date of Trip</string>
+    <string name="date_summary">Please select the day that your trip begins</string>
+    <string name="time_key">cruiseTime</string>
+    <string name="time_title"><i>Time of Trip</i></string>
+    <string name="time_summary">Please select the time that your trip begins</string>
+    <string name="notification_preferences_key">notificationPreferences</string>
+    <string name="notification_preferences_title">Notification Settings</string>
+    <string name="notification_preferences_summary">Select how you wish to be notified about upcoming reservations.</string>
+    <string name="date_not_set">Please remember to set the date and time that your trip begins in the setting menu.</string>
+    <string name="trip_countdown_prefix">Your trip will begin in: </string>
+    <string name="not_applicable">N/A</string>
+    <string name="title_activity_cruise_settings">CruiseSettings</string>
+    <string name="set_date">Set Date</string>
+    <string name="date_of_trip">Your trip is set for: </string>
+    <string name="set_time">Set Time</string>
+    <string name="time_of_trip">Your trip is set to start at: </string>
+    <string name="date_in_past">The trip date is in the past.</string>
+
+    <string name="cruise_save_key">cruiseSave</string>
+    <string name="cruise_save_title">Save Cruise</string>
+    <string name="cruise_save_summary">Save the current cruise if you want to come back to it after another cruise.</string>
+    <string name="cruise_save_message">Save this cruise as: </string>
+
+    <string name="cruise_load_key">cruiseLoad</string>
+    <string name="cruise_load_title">Load a Cruise</string>
+    <string name="cruise_load_summary">Load a cruise from earlier.</string>
+    <string name="cruise_load_message">Pick the cruise you want to load</string>
+
+    <string name="cruise_delete_key">cruiseDelete</string>
+    <string name="cruise_delete_title">Delete a Cruise</string>
+    <string name="cruise_delete_summary">Delete a cruise from earlier.</string>
+    <string name="cruise_delete_message">Pick the cruise you want to Delete</string>
+
+    <string name="cruise_reset_key">cruiseReset</string>
+    <string name="cruise_reset_title">Reset Cruise</string>
+    <string name="cruise_reset_summary">Reset the current cruise if you want to start from scratch.</string>
+    <string name="cruise_reset_message">Reset this cruise? Make sure you saved before resetting.</string>
+
+    <string name="save_confirm">Save</string>
+    <string name="reset_confirm">Reset</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="delete">Delete</string>
+
+    <string name="num_drinks_consumed_header">During your trip, you have consumed a total of: </string>
+    <string name="num_drinks_consumed_footer"> beverages, worth a total of roughly: </string>
+    <string name="consume_beverage">I drank another one!</string>
+    <string name="remove_beverage">Remove drink</string>
+    <string name="beverages_consumed">Beverages</string>
+
+
+
+    <string name="currency">Currency</string>
+    <string name="distance">Distance</string>
+    <string name="speed">Speed</string>
+    <string name="temperature">Temperature</string>
+    <string name="USD">USD</string>
+    <string name="CAD">CAD</string>
+    <string name="MXN">MXN</string>
+    <string name="GBP">GBP</string>
+    <string name="EUR">EUR</string>
+    <string name="MPH">MPH</string>
+    <string name="KNOTS">KNOTS</string>
+    <string name="KPH">KPH</string>
+    <string name="MI">MI</string>
+    <string name="KM">KM</string>
+    <string name="NM">NM</string>
+    <string name="C">C</string>
+    <string name="F">F</string>
+
+    <string name="currency_update_message">*Currency conversion rates refresh every hour with a network connection.</string>
+
+    <string-array name="supported_conversions">
+        <item>@string/currency</item>
+        <item>@string/distance</item>
+        <item>@string/speed</item>
+        <item>@string/temperature</item>
+    </string-array>
+    <string-array name="supported_currencies">
+        <item>@string/USD</item>
+        <item>@string/CAD</item>
+        <item>@string/MXN</item>
+        <item>@string/GBP</item>
+        <item>@string/EUR</item>
+    </string-array>
+    <string-array name="supported_speeds">
+        <item>@string/MPH</item>
+        <item>@string/KNOTS</item>
+        <item>@string/KPH</item>
+    </string-array>
+    <string-array name="supported_distances">
+        <item>@string/MI</item>
+        <item>@string/KM</item>
+        <item>@string/NM</item>
+    </string-array>
+    <string-array name="supported_temperatures">
+        <item>@string/C</item>
+        <item>@string/F</item>
+    </string-array>
+
+    <string name="hotel">Hotel</string>
+    <string name="flight">Flight</string>
+    <string name="cruise">Cruise</string>
+    <string name="bus">Bus</string>
+
+    <string name="hotel_name_label">Hotel Name: </string>
+    <string name="hotel_name_hint">Enter the name of the hotel</string>
+    <string name="address_label">Address: </string>
+    <string name="city_label">City: </string>
+    <string name="state_province_label">State/Province: </string>
+    <string name="check_in_date_label">Check in date: </string>
+    <string name="check_in_time_label">Check in time: </string>
+    <string name="check_out_date_label">Check out date: </string>
+    <string name="check_out_time_label">Check out time: </string>
+    <string name="select_date">Select a date</string>
+    <string name="select_time">Select a time</string>
+
+    <string name="airline_name_label">Airline: </string>
+    <string name="airline_name_hint">Enter the name of the airline</string>
+    <string name="seat_number_label">Seat #: </string>
+    <string name="flight_number_label">Flight #: </string>
+    <string name="origin_label">Origin: </string>
+    <string name="destination_label">Destination: </string>
+    <string name="arrival_time_label">Arrival: </string>
+    <string name="departure_date_label">Departure date: </string>
+    <string name="departure_time_label">Departure time: </string>
+
+    <string name="cruise_line_name_label">Cruise Line: </string>
+    <string name="ship_name_label">Ship: </string>
+    <string name="room_number_label">Room #: </string>
+    <string name="confirmation_number_label">Confirmation #: </string>
+    <string name="phone_number_label">Phone #: </string>
+
+    <string name="busline_name_label">Bus line: </string>
+    <string name="busline_name_hint">Enter the name of the bus line</string>
+
+
+    <string name="info_item">InfoItem</string>
+    <string name="info_items">InfoItems</string>
+    <string name="info_type">InfoType</string>
+
+    <string-array name="supported_trip_information_types">
+        <item>@string/hotel</item>
+        <item>@string/flight</item>
+        <item>@string/cruise</item>
+        <item>@string/bus</item>
+    </string-array>
+    <string name="expense_description_hint">What is this expense?</string>
+    <string name="expense_value_hint">How much?</string>
+    <string name="total_expenses_prefix">Total Expenses: $</string>
+    <string name="expense_items">ExpenseItems</string>
+
+    <string name="description_header"><u>Description of Expense</u></string>
+    <string name="value_header"><u>Cost</u></string>
+
+    <string name="trip_log_hint">Enter the text of your log entry here</string>
+    <string name="log_entry">LogEntry</string>
+    <string name="image_picker_alert_message">Do you want to take a new photo or use an existing photo?</string>
+    <string name="new_photo">New</string>
+    <string name="existing_photo">Existing</string>
+    <string name="share">Share</string>
+    <string name="log_entry_image_description">Image for this log entry</string>
+
+    <string name="start_date_label">Start of trip</string>
+    <string name="end_date_label">End of trip</string>
+    <string name="select_start_date">Select start date</string>
+    <string name="select_end_date">Select end date</string>
+    <string name="select">Select</string>
+
+    <string name="date_entry_date">DateEntryDate</string>
+    <string name="date_entry_title">Title:</string>
+    <string name="date_entry_time">Time:</string>
+    <string name="date_entry_location">Location:</string>
+    <string name="date_entry_description">Description:</string>
+    <string name="time_picker_label">Select a time</string>
+    <string name="agenda_entry_item">AgendaEntry</string>
+
+    <string name="group_pos">GroupPos</string>
+    <string name="title_prefix">Title: %1$s</string>
+    <string name="time_prefix">Time: %1$s</string>
+    <string name="location_prefix">Location: %1$s</string>
+    <string name="description_prefix">Description: %1$s</string>
+    <string name="expand_all_label">Expand All</string>
+    <string name="collapse_all_label">Collapse All</string>
+    <string name="date_entries_hash_map">DateEntriesHash</string>
+
+    <string name="end_date_change_warning">If you make the end date earlier than it is currently set, you risk losing information. Proceed?</string>
+    <string name="end_date_change_title">Are you sure?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="cruise_names">cruiseNames</string>
+    <string name="save_success">has been saved</string>
+    <string name="save_failed">couldn\'t be saved</string>
+    <string name="save_cancelled">Save Cancelled</string>
+    <string name="current_name">currentName</string>
+    <string name="no_saved_cruises">There aren\'t any saved cruises yet</string>
+
+    <string name="delete_successful">was deleted successfully</string>
+    <string name="delete_failed">couldn\'t be deleted</string>
+
+    <string name="load_successful">was loaded successfully</string>
+    <string name="load_failed">couldn\'t be loaded</string>
+
+    <string name="add_new_entry_description">Icon for adding a new entry</string>
+    <string name="app_tile_description">Icon for one of the several main functions within this application.</string>
+
+    <string name="err_tel">Please enter a valid phone number.</string>
+
+    <string name="select_check_in_date">Select a check in date</string>
+    <string name="select_check_out_date">Select a check out date</string>
+    <string name="select_check_in_time">Select a check in time</string>
+    <string name="select_check_out_time">Select a check out time</string>
+
+    <string name="select_departure_date">Select a departure date</string>
+    <string name="select_departure_time">Select a departure time</string>
+    <string name="select_arrival_time">Select an arrival time</string>
+    <string name="title_activity_share_trip_info">ShareTripInfo</string>
+
+    <string name="title_connecting">connecting…</string>
+    <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>
+    <string name="title_not_connected">not connected</string>
+    <string name="not_connected">You are not connected to a device</string>
+    <string name="share_information">*In order to share, make sure the receiving device is on the Trip Information page.</string>
+
+    <string name="email">Email</string>
+    <string name="share_all">Share all</string>
+
+    <string name="cruise_notifications_label">Cruise Notifications</string>
+    <string name="cruise_notifications_description">Select this to receive a notification 24 hours and 15 minutes before your cruise reservations</string>
+    <string name="flight_notifications_label">Flight Notifications</string>
+    <string name="flight_notifications_description">Select this to receive a notification 24 hours and 15 minutes before your flight reservations</string>
+    <string name="hotel_notifications_label">Hotel Notifications</string>
+    <string name="hotel_notifications_description">Select this to receive a notification 24 hours and 15 minutes before your hotel reservations</string>
+    <string name="bus_notifications_label">Bus Notifications</string>
+    <string name="bus_notifications_description">Select this to receive a notification 24 hours and 15 minutes before your bus reservations</string>
+
+</resources>

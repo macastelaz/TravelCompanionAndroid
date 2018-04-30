@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context="com.castelcode.cruisecompanion.tile_activities.DrinkCounter"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:id="@+id/drink_counter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="5dip"
+        android:paddingStart="10dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingEnd="10dip">
+        <Spinner
+            android:id="@+id/drink_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/spinnerDropDownItemStyle"
+            android:background="@drawable/spinner_border"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <TextView
+                android:id="@+id/drink_type_count_label"
+                android:layout_width="0dp"
+                android:layout_weight="1.75"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/drink_type_count_value"
+                android:layout_width="0dp"
+                android:layout_weight="0.25"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                android:textSize="20sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/drink_type_count_disclaimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColor"
+            android:textSize="19sp"/>
+    </LinearLayout>
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:gravity="center|bottom">
+
+    <Button
+        android:id="@+id/consume_drink_button"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/consume_beverage" />
+    <Button
+        android:id="@+id/remove_drink_button"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/remove_beverage" />
+        <TextView
+            android:id="@+id/num_drinks_consumed_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/num_drinks_consumed_header"
+            android:textAlignment="center"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/num_drinks_consumed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/textColor"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+        <TextView
+            android:id="@+id/num_drinks_consumed_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/num_drinks_consumed_footer"
+            android:textAlignment="center"
+            android:textColor="@color/textColor"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/value_of_drinks_consumed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/textColor"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:typeface="serif"
+            />
+    </LinearLayout>
+
+</LinearLayout>

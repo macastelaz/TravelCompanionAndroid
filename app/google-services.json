@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "758871610845",
+    "firebase_url": "https://cruisecompanion-807be.firebaseio.com",
+    "project_id": "cruisecompanion-807be",
+    "storage_bucket": "cruisecompanion-807be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758871610845:android:b323cab1de1c3204",
+        "android_client_info": {
+          "package_name": "com.castelcode.cruisecompanion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758871610845-u5l341iqinbapv6a60gfu8seh44dkj4d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.castelcode.cruisecompanion",
+            "certificate_hash": "07fdce95096b8cc60e872aad71fc604bec581661"
+          }
+        },
+        {
+          "client_id": "758871610845-6qsr43jlol2ntilik5mrrd6haiielo16.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4qFxbxDL-DlslpUbNozh2Cd72tjxhNnA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758871610845-aa5qf9cgpc8dp4ci2q3rvl5kohq036b4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.castelcode.CruiseCompanion"
+              }
+            },
+            {
+              "client_id": "758871610845-6qsr43jlol2ntilik5mrrd6haiielo16.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
