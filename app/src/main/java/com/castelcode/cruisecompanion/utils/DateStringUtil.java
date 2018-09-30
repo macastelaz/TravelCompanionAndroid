@@ -61,6 +61,10 @@ public class DateStringUtil {
         return getYear(date) + "." + getMonth(date) + "." + getDay(date);
     }
 
+    public static String dotToSlash(String date){
+        return getMonth(date) + "/" + getDay(date) + "/" + getYear(date) ;
+    }
+
     public static int getDay(String dateString){
         int day = getComponentAtIndexWithDelimiter(dateString, 1, "/");
         if(day == -1) {

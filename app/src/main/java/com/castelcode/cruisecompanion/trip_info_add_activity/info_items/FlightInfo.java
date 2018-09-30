@@ -4,12 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.VisibleForTesting;
 
+import com.castelcode.protobuf.TripInfoProtos;
+
 import java.io.Serializable;
 
 public class FlightInfo extends Info implements Parcelable, Serializable {
 
     @SuppressWarnings("unused")
     private final String type = "Flight";
+    @SuppressWarnings("WeakerAccess")
     public static final String typeOfItem = "Flight";
 
     private String mFlightNumber;
@@ -29,7 +32,7 @@ public class FlightInfo extends Info implements Parcelable, Serializable {
         mArrivalTime = arrivalTime;
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @VisibleForTesting()
     public FlightInfo(Parcel in) {
         mPrimaryName = in.readString();
         mConfirmationNumber = in.readString();
@@ -57,6 +60,19 @@ public class FlightInfo extends Info implements Parcelable, Serializable {
         mOrigin = parts[8];
         mDestination = parts[9];
         mArrivalTime = parts[10];
+    }
+
+    public FlightInfo(TripInfoProtos.FlightInformation flightInfo) {
+        mPrimaryName = flightInfo.getAirline();
+        mConfirmationNumber = flightInfo.getConfirmationNumber();
+        mPhoneNumber = flightInfo.getPhoneNumber();
+        mStartDate = flightInfo.getDepartureDate();
+        mStartTime = flightInfo.getDepartureTime();
+        mFlightNumber = flightInfo.getFlightNumber();
+        mSeatNumber = flightInfo.getSeatNumber();
+        mOrigin = flightInfo.getOrigin();
+        mDestination = flightInfo.getDestination();
+        mArrivalTime = flightInfo.getArrivalTime();
     }
 
     @Override

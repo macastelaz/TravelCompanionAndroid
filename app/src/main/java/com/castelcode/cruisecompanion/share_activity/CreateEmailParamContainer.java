@@ -1,4 +1,4 @@
-package com.castelcode.cruisecompanion.trip_info_share_activity;
+package com.castelcode.cruisecompanion.share_activity;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;

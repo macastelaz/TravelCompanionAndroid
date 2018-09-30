@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,24 +20,27 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.castelcode.protobuf.TripInfoProtos;
 import com.castelcode.cruisecompanion.bluetooth.BluetoothShareService;
 import com.castelcode.cruisecompanion.bluetooth.Constants;
 import com.castelcode.cruisecompanion.R;
 import com.castelcode.cruisecompanion.adapters.InfoItemsBaseAdapter;
 import com.castelcode.cruisecompanion.adapters.InfoSerializerAdapter;
+import com.castelcode.cruisecompanion.share_activity.ShareCruiseItem;
+import com.castelcode.cruisecompanion.share_activity.SupportedShareItemTypes;
 import com.castelcode.cruisecompanion.trip_info_add_activity.AddTripInfoItem;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.CruiseInfo;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.FlightInfo;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.HotelInfo;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.BusInfo;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.Info;
-import com.castelcode.cruisecompanion.trip_info_share_activity.ShareTripInfo;
 import com.castelcode.cruisecompanion.utils.DeviceUuidFactory;
 import com.castelcode.cruisecompanion.utils.NotificationUtil;
 import com.castelcode.cruisecompanion.utils.SettingsConstants;
 import com.castelcode.cruisecompanion.utils.SharedPreferencesManager;
 import com.castelcode.cruisecompanion.utils.TripInfoConstants;
 import com.castelcode.cruisecompanion.utils.WakefulReceiver;
+import com.google.common.collect.ImmutableList;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,11 +51,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.gsonfire.GsonFireBuilder;
@@ -94,13 +101,13 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
         database = FirebaseDatabase.getInstance();
         deviceUUID = new DeviceUuidFactory(this).getDeviceUuidAsString();
 
-        addTripInfoButton = (FloatingActionButton) findViewById(R.id.add_info_button);
+        addTripInfoButton = findViewById(R.id.add_info_button);
         addTripInfoButton.setOnClickListener(this);
 
-        shareAllButton = (Button) findViewById(R.id.share_all_button);
+        shareAllButton = findViewById(R.id.share_all_button);
         shareAllButton.setOnClickListener(this);
 
-        infoItemsView = (ListView) findViewById(R.id.info_list_view);
+        infoItemsView = findViewById(R.id.info_list_view);
 
         adapter = new InfoItemsBaseAdapter(this, infoItems);
 
@@ -136,11 +143,18 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
         final Context context = this;
         infoItemsView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position,
                 long id) -> {
-            Intent shareTripInfoIntent = new Intent(context, ShareTripInfo.class);
+            Intent shareTripInfoIntent = new Intent(context, ShareCruiseItem.class);
             shareTripInfoIntent.putExtra(ITEM_TO_SHARE_NAME,
                     infoItems.get(position).toString());
             shareTripInfoIntent.putExtra(ITEM_TO_SHARE_VALUE,
-                    infoItems.get(position).toShareableString());
+                    createStringForSharedTripInfo(
+                        TripInfoProtos.SharedTripInfo.newBuilder()
+                                .addAllSharedTripInformation(
+                                        createAllSharedTripInformationForItems(
+                                                ImmutableList.of(infoItems.get(position))))
+                                .build()));
+            shareTripInfoIntent.putExtra(ShareCruiseItem.SHARE_ITEM_TYPE_NAME,
+                    SupportedShareItemTypes.TRIP_INFO);
             shareTripInfoIntent.putExtra(ITEM_TO_SHARE_POSITION, position);
             startActivityForResult(shareTripInfoIntent, TRIP_INFORMATION_SHARE);
             return true;
@@ -192,6 +206,92 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
             adapter.notifyDataSetChanged();
         }
     }
+
+    private String createStringForSharedTripInfo(TripInfoProtos.SharedTripInfo sharedTripInfo) {
+        String sharedTripInfoString = "";
+        try {
+            sharedTripInfoString = JsonFormat.printer().print(sharedTripInfo);
+        } catch (InvalidProtocolBufferException ex) {
+            System.out.println("Exception printing item to JSON: " + ex.toString());
+        }
+        return sharedTripInfoString;
+    }
+
+    private ArrayList<TripInfoProtos.TripInfo> createAllSharedTripInformationForItems(
+            List<Info> items) {
+        ArrayList<TripInfoProtos.TripInfo> tripInfoItems = new ArrayList<>();
+        for (Info item : items) {
+            TripInfoProtos.TripInfo.Builder tripInfo = TripInfoProtos.TripInfo.newBuilder();
+            if (item instanceof CruiseInfo) {
+                tripInfo.setCruiseInfo(createCruiseInformation((CruiseInfo) item));
+            } else if (item instanceof FlightInfo) {
+                tripInfo.setFlightInfo(createFlightInformation((FlightInfo) item));
+            } else if (item instanceof HotelInfo) {
+                tripInfo.setHotelInfo(createHotelInformation((HotelInfo) item));
+            } else if (item instanceof BusInfo) {
+                tripInfo.setBusInfo(createBusInformation((BusInfo) item));
+            }
+            tripInfoItems.add(tripInfo.build());
+        }
+        return tripInfoItems;
+    }
+
+    private TripInfoProtos.CruiseInformation createCruiseInformation(CruiseInfo cruiseInfo) {
+        return TripInfoProtos.CruiseInformation.newBuilder()
+                .setCruiseLine(cruiseInfo.getPrimaryName())
+                .setShipName(cruiseInfo.getShipName())
+                .setRoomNumber(cruiseInfo.getRoomNumber())
+                .setDepartureDate(cruiseInfo.getStartDate())
+                .setDepartureTime(cruiseInfo.getStartTime())
+                .setConfirmationNumber(cruiseInfo.getConfirmationNumber())
+                .setPhoneNumber(cruiseInfo.getPhoneNumber())
+                .build();
+    }
+
+    private TripInfoProtos.FlightInformation createFlightInformation(FlightInfo flightInfo) {
+        return TripInfoProtos.FlightInformation.newBuilder()
+                .setAirline(flightInfo.getPrimaryName())
+                .setFlightNumber(flightInfo.getFlightNumber())
+                .setSeatNumber(flightInfo.getSeatNumber())
+                .setOrigin(flightInfo.getOrigin())
+                .setDestination(flightInfo.getDestination())
+                .setDepartureDate(flightInfo.getStartDate())
+                .setDepartureTime(flightInfo.getStartTime())
+                .setArrivalTime(flightInfo.getArrivalTime())
+                .setConfirmationNumber(flightInfo.getConfirmationNumber())
+                .setPhoneNumber(flightInfo.getPhoneNumber())
+                .build();
+    }
+
+    private TripInfoProtos.HotelInformation createHotelInformation(HotelInfo hotelInfo) {
+        return TripInfoProtos.HotelInformation.newBuilder()
+                .setName(hotelInfo.getPrimaryName())
+                .setAddress(hotelInfo.getAddress())
+                .setCity(hotelInfo.getCity())
+                .setState(hotelInfo.getStateProvince())
+                .setConfrimationNumber(hotelInfo.getConfirmationNumber())
+                .setPhoneNumber(hotelInfo.getPhoneNumber())
+                .setCheckInDate(hotelInfo.getStartDate())
+                .setCheckInTime(hotelInfo.getStartTime())
+                .setCheckOutDate(hotelInfo.getCheckOutDate())
+                .setCheckOutTime(hotelInfo.getCheckOutTime())
+                .build();
+    }
+
+    private TripInfoProtos.BusInformation createBusInformation(BusInfo busInfo) {
+        return TripInfoProtos.BusInformation.newBuilder()
+                .setBusLine(busInfo.getPrimaryName())
+                .setSeatNumber(busInfo.getSeatNumber())
+                .setOrigin(busInfo.getOrigin())
+                .setDestination(busInfo.getDestination())
+                .setDepartureDate(busInfo.getStartDate())
+                .setDepartureTime(busInfo.getStartTime())
+                .setArrivalTime(busInfo.getArrivalTime())
+                .setConfirmationNumber(busInfo.getConfirmationNumber())
+                .setPhoneNumber(busInfo.getPhoneNumber())
+                .build();
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -222,7 +322,7 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
         String sessionId = getUniqueSessionIdentifier(remoteDevice);
         ref.child(sessionId).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue() != null) {
                     String val = dataSnapshot.getValue().toString();
                     addItemsShared(context, val);
@@ -231,7 +331,7 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 //Do nothing
             }
         });
@@ -299,17 +399,17 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
             startActivityForResult(createTripInfoItemIntent, TRIP_INFORMATION_ITEM_ADD);
         }
         else if (v == shareAllButton) {
-            Intent shareTripInfoIntent = new Intent(this, ShareTripInfo.class);
+            Intent shareTripInfoIntent = new Intent(this, ShareCruiseItem.class);
             shareTripInfoIntent.putExtra(ITEM_TO_SHARE_NAME, ALL_ITEMS);
-            StringBuilder builder = new StringBuilder();
-            String stringToShare;
-            for(int i = 0; i < infoItems.size(); i ++){
-                builder.append(infoItems.get(i).toShareableString()).append("\n");
-            }
-            stringToShare = builder.toString();
-            if(stringToShare.length() > 0) {
-                stringToShare = stringToShare.substring(0, stringToShare.length() - 1);
-            }
+            shareTripInfoIntent.putExtra(ShareCruiseItem.SHARE_ITEM_TYPE_NAME,
+                    SupportedShareItemTypes.TRIP_INFO);
+
+            String stringToShare = createStringForSharedTripInfo(
+                    TripInfoProtos.SharedTripInfo.newBuilder()
+                            .addAllSharedTripInformation(
+                                    createAllSharedTripInformationForItems(infoItems))
+                            .build());
+
             shareTripInfoIntent.putExtra(ITEM_TO_SHARE_VALUE, stringToShare);
             startActivityForResult(shareTripInfoIntent, TRIP_INFORMATION_SHARE);
         }
@@ -330,31 +430,28 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
     }
 
     private static void addItemsShared(Context context, String readMessage) {
-        String[] objectsAsStrings = readMessage.split("\\r?\\n");
-        for (String objectsAsString : objectsAsStrings) {
-            String[] parts = objectsAsString.split("\\|");
-            Info info;
-            switch (parts[0]) {
-                case CruiseInfo.typeOfItem:
-                    info = new CruiseInfo(objectsAsString);
-                    break;
-                case FlightInfo.typeOfItem:
-                    info = new FlightInfo(objectsAsString);
-                    break;
-                case HotelInfo.typeOfItem:
-                    info = new HotelInfo(objectsAsString);
-                    break;
-                case BusInfo.typeOfItem:
-                    info = new BusInfo(objectsAsString);
-                    break;
-                default:
-                    info = null;
-                    break;
+        TripInfoProtos.SharedTripInfo.Builder sharedTripInfos =
+                TripInfoProtos.SharedTripInfo.newBuilder();
+        try {
+            JsonFormat.parser().merge(readMessage, sharedTripInfos);
+        } catch (InvalidProtocolBufferException ex) {
+            System.out.println("Failed to parse proto with exception: " + ex.toString());
+        }
+        for (TripInfoProtos.TripInfo info : sharedTripInfos.getSharedTripInformationList()) {
+            Info infoToUse = null;
+            if (info.hasCruiseInfo()) {
+                infoToUse = new CruiseInfo(info.getCruiseInfo());
+            } else if(info.hasFlightInfo()) {
+                infoToUse = new FlightInfo(info.getFlightInfo());
+            } else if (info.hasBusInfo()) {
+                infoToUse = new BusInfo(info.getBusInfo());
+            } else if(info.hasHotelInfo()) {
+                infoToUse = new HotelInfo(info.getHotelInfo());
             }
-            if (info != null) {
-                if (!infoItems.contains(info)) {
-                    infoItems.add(info);
-                    addNotificationForItemIfNecessary(context, info);
+            if (infoToUse != null) {
+                if (!infoItems.contains(infoToUse)) {
+                    infoItems.add(infoToUse);
+                    addNotificationForItemIfNecessary(context, infoToUse);
                     adapter.notifyDataSetChanged();
                 } else {
                     Toast.makeText(context,
@@ -458,27 +555,27 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
 
     private ChildEventListener childEventListener = new ChildEventListener() {
         @Override
-        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
             //Do nothing
         }
 
         @Override
-        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String s) {
             handleDataTransfer(dataSnapshot);
         }
 
         @Override
-        public void onChildRemoved(DataSnapshot dataSnapshot) {
+        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
             //Do nothing
         }
 
         @Override
-        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String s) {
             //Do nothing
         }
 
         @Override
-        public void onCancelled(DatabaseError databaseError) {
+        public void onCancelled(@NonNull DatabaseError databaseError) {
             //Do nothing
         }
     };

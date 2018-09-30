@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.castelcode.cruisecompanion.trip_info_share_activity.ShareTripInfo"
-    tools:showIn="@layout/activity_share_trip_info">
+    tools:context="com.castelcode.cruisecompanion.share_activity.ShareCruiseItem"
+    tools:showIn="@layout/activity_share_info">
 
 </android.support.constraint.ConstraintLayout>

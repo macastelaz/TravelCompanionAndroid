@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SharedPreferencesManager {
 
@@ -76,6 +77,32 @@ public class SharedPreferencesManager {
 
         java.lang.reflect.Type type = new TypeToken<HashMap<String, Integer>>(){}.getType();
         return gson.fromJson(hashMapString, type);
+    }
+
+    public static void saveDrinkPrices(Context context,
+                                          Map<String, Double> drinkPrices) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        Gson gson = new Gson();
+        String hashMapString = gson.toJson(drinkPrices);
+
+        editor.putString("drinkPricesPerType" , hashMapString);
+        editor.apply();
+    }
+
+    public static Map<String, Double> getDrinkPrices(Context context) {
+        Gson gson = new Gson();
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String mapString = sharedPref.getString("drinkPricesPerType", "");
+
+        if(mapString.equals("")){
+            return null;
+        }
+
+        java.lang.reflect.Type type = new TypeToken<Map<String, Double>>(){}.getType();
+        return gson.fromJson(mapString, type);
     }
 
     public static String getCruiseDate(Context context) {

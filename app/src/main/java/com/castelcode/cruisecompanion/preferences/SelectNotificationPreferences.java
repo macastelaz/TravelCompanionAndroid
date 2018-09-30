@@ -3,6 +3,7 @@ package com.castelcode.cruisecompanion.preferences;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
@@ -27,16 +28,16 @@ public class SelectNotificationPreferences extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_notification_preferences);
 
-        flightNotificationsCheckBox = (CheckBox) findViewById(R.id.flight_notifications);
+        flightNotificationsCheckBox = findViewById(R.id.flight_notifications);
         flightNotificationsCheckBox.setOnCheckedChangeListener(this);
 
-        hotelNotificationsCheckBox = (CheckBox) findViewById(R.id.hotel_notifications);
+        hotelNotificationsCheckBox = findViewById(R.id.hotel_notifications);
         hotelNotificationsCheckBox.setOnCheckedChangeListener(this);
 
-        busNotificationsCheckBox = (CheckBox) findViewById(R.id.bus_notifications);
+        busNotificationsCheckBox = findViewById(R.id.bus_notifications);
         busNotificationsCheckBox.setOnCheckedChangeListener(this);
 
-        cruiseNotificationsCheckBox = (CheckBox) findViewById(R.id.cruise_notifications);
+        cruiseNotificationsCheckBox = findViewById(R.id.cruise_notifications);
         cruiseNotificationsCheckBox.setOnCheckedChangeListener(this);
     }
 
@@ -59,6 +60,15 @@ public class SelectNotificationPreferences extends AppCompatActivity implements
                 SettingsConstants.CRUISE_NOTIFICATION_PREFERENCE_TAG,
                 this);
         cruiseNotificationsCheckBox.setChecked(cruiseNotifications);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
     }
 
     @Override

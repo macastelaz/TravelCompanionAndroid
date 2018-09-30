@@ -11,7 +11,6 @@ public class DateEntry implements Serializable {
     private String mDescription;
     private String mDate;
 
-    @VisibleForTesting (otherwise = VisibleForTesting.PACKAGE_PRIVATE)
     public DateEntry(String title, String time, String location, String description, String date){
         mTitle = title;
         mTime = time;
@@ -49,5 +48,9 @@ public class DateEntry implements Serializable {
         return false;
     }
 
-
+    public String toShareableString() {
+        String SEPARATOR = "|";
+        return mTitle + SEPARATOR + mTime + SEPARATOR +
+                mLocation + SEPARATOR + mDescription;
+    }
 }

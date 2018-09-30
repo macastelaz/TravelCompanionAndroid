@@ -24,5 +24,8 @@
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textColorSecondary">@color/textColor</item>
     </style>
-
+    <style name="CustomCheckbox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/textColor</item>
+        <item name="colorControlActivated">@color/textColor</item>
+    </style>
 </resources>

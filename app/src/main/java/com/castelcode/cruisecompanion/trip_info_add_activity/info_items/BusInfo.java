@@ -4,12 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.VisibleForTesting;
 
+import com.castelcode.protobuf.TripInfoProtos;
+
 import java.io.Serializable;
 
 public class BusInfo extends Info implements Parcelable, Serializable {
 
     @SuppressWarnings("unused")
     private final String type = "Bus";
+    @SuppressWarnings("WeakerAccess")
     public static final String typeOfItem = "Bus";
 
     private String mSeatNumber;
@@ -27,7 +30,7 @@ public class BusInfo extends Info implements Parcelable, Serializable {
         mArrivalTime = arrivalTime;
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @VisibleForTesting()
     public BusInfo(Parcel in) {
         mPrimaryName = in.readString();
         mConfirmationNumber = in.readString();
@@ -53,6 +56,18 @@ public class BusInfo extends Info implements Parcelable, Serializable {
         mOrigin = parts[7];
         mDestination = parts[8];
         mArrivalTime = parts[9];
+    }
+
+    public BusInfo(TripInfoProtos.BusInformation busInfo) {
+        mPrimaryName = busInfo.getBusLine();
+        mConfirmationNumber = busInfo.getConfirmationNumber();
+        mPhoneNumber = busInfo.getPhoneNumber();
+        mStartDate = busInfo.getDepartureDate();
+        mStartTime = busInfo.getDepartureTime();
+        mSeatNumber = busInfo.getSeatNumber();
+        mOrigin = busInfo.getOrigin();
+        mDestination = busInfo.getDestination();
+        mArrivalTime = busInfo.getArrivalTime();
     }
 
     @Override

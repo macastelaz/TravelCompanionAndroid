@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:id="@+id/trip_checklists"
+    android:orientation="vertical"
+    android:weightSum="3">
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/checklist_title"
+            android:textColor="@color/textColor"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/sort_preference"
+            android:layout_toStartOf="@+id/sort_preference"/>
+        <com.castelcode.cruisecompanion.trip_checklists.trip_checklist_edit_activity.SortOrderSpinner
+            android:id="@+id/sort_preference"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:gravity="end"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/spinner_border"
+            android:layout_alignParentEnd="true">
+        </com.castelcode.cruisecompanion.trip_checklists.trip_checklist_edit_activity.SortOrderSpinner>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/checklist_items_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.4"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:layout_weight="0.3">
+        <Button
+            android:id="@+id/add_checklist_item_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/add_checklist_item"
+            android:textColor="@color/textColor"
+            android:background="@android:color/black"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -4,12 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.VisibleForTesting;
 
+import com.castelcode.protobuf.TripInfoProtos;
+
 import java.io.Serializable;
 
 public class HotelInfo extends Info implements Parcelable, Serializable {
 
     @SuppressWarnings("unused")
     private final String type = "Hotel";
+    @SuppressWarnings("WeakerAccess")
     public static final String typeOfItem = "Hotel";
 
     private String mAddress;
@@ -29,7 +32,7 @@ public class HotelInfo extends Info implements Parcelable, Serializable {
         mCheckOutTime = checkOutTime;
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    @VisibleForTesting()
     public HotelInfo(Parcel in) {
         mPrimaryName = in.readString();
         mConfirmationNumber = in.readString();
@@ -57,6 +60,19 @@ public class HotelInfo extends Info implements Parcelable, Serializable {
         mStateProvince = parts[8];
         mCheckOutDate = parts[9];
         mCheckOutTime = parts[10];
+    }
+
+    public HotelInfo(TripInfoProtos.HotelInformation hotelInfo) {
+        mPrimaryName = hotelInfo.getName();
+        mConfirmationNumber = hotelInfo.getConfrimationNumber();
+        mPhoneNumber = hotelInfo.getPhoneNumber();
+        mStartDate = hotelInfo.getCheckInDate();
+        mStartTime = hotelInfo.getCheckInTime();
+        mAddress = hotelInfo.getAddress();
+        mCity = hotelInfo.getCity();
+        mStateProvince = hotelInfo.getState();
+        mCheckOutDate = hotelInfo.getCheckOutDate();
+        mCheckOutTime = hotelInfo.getCheckOutTime();
     }
 
     @Override

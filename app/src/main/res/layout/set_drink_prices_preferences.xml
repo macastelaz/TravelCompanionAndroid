@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/cocktail_label"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/cocktail_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColor"
+            android:textAlignment="textEnd"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/wine_label"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/wine_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColor"
+            android:textAlignment="textEnd"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/beer_label"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/beer_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColor"
+            android:textAlignment="textEnd"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/coffee_label"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/coffee_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColor"
+            android:textAlignment="textEnd"
+            android:gravity="end"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/soda_label"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/soda_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColor"
+            android:textAlignment="textEnd"
+            android:gravity="end"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/water_label"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/water_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColor"
+            android:textAlignment="textEnd"
+            android:gravity="end"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/juice_label"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <com.blackcat.currencyedittext.CurrencyEditText
+            android:id="@+id/juice_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColor"
+            android:textAlignment="textEnd"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/reset_to_defaults"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reset_to_defaults" />
+</LinearLayout>

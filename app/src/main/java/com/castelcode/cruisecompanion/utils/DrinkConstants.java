@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class DrinkConstants {
 
-    private static final String COCKTAILS_KEY = "Cocktail";
-    private static final String WINES_KEY = "Wine";
-    private static final String BEERS_KEY = "Beer";
-    private static final String COFFEES_KEY = "Coffee";
-    private static final String SODAS_KEY = "Soda";
-    private static final String WATERS_KEY = "Water";
-    private static final String JUICES_KEY = "Juice";
+    public static final String COCKTAILS_KEY = "Cocktail";
+    public static final String WINES_KEY = "Wine";
+    public static final String BEERS_KEY = "Beer";
+    public static final String COFFEES_KEY = "Coffee";
+    public static final String SODAS_KEY = "Soda";
+    public static final String WATERS_KEY = "Water";
+    public static final String JUICES_KEY = "Juice";
 
     private static final double COCKTAILS = 11.00;
     private static final double WINES = 13.00;

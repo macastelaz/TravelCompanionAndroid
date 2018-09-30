@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class DrinkCounter extends AppCompatActivity implements View.OnClickListener,
         AdapterView.OnItemSelectedListener {
@@ -45,6 +46,7 @@ public class DrinkCounter extends AppCompatActivity implements View.OnClickListe
     ArrayList<String> drinkTypes;
     ArrayAdapter<String> drinkTypeAdapter;
     HashMap<String, Integer> numDrinksPerType;
+    Map<String, Double> costPerDrinkType;
     Locale locale = Locale.getDefault();
 
     double currentValue = 0.0;
@@ -54,21 +56,51 @@ public class DrinkCounter extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drink_counter);
 
-        drinkTypeCountLabel = (TextView) findViewById(R.id.drink_type_count_label);
-        drinkTypeCountValue = (TextView) findViewById(R.id.drink_type_count_value);
-        drinkTypeCountDisclaimer = (TextView) findViewById(R.id.drink_type_count_disclaimer);
+        drinkTypeCountLabel = findViewById(R.id.drink_type_count_label);
+        drinkTypeCountValue = findViewById(R.id.drink_type_count_value);
+        drinkTypeCountDisclaimer = findViewById(R.id.drink_type_count_disclaimer);
 
         drinkTypes = new ArrayList<>();
 
         numDrinksPerType = SharedPreferencesManager.getDrinksConsumed(this);
-
+        costPerDrinkType = SharedPreferencesManager.getDrinkPrices(this);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        numDrinksConsumed = sharedPref.getInt(getString(R.string.beverages_consumed),
+                DEFAULT_NUM_BEVERAGES_CONSUMED);
         if(numDrinksPerType != null && numDrinksPerType.size() > DrinkConstants.DRINK_TYPES.size()) {
             Iterator<Map.Entry<String,Integer>> iter = numDrinksPerType.entrySet().iterator();
+            int currentDrinks = 0;
             while (iter.hasNext()) {
                 Map.Entry<String,Integer> entry = iter.next();
                 if(!DrinkConstants.DRINK_TYPES.containsKey(entry.getKey())){
                     iter.remove();
                 }
+                else {
+                    currentDrinks += entry.getValue();
+                }
+            }
+            if (numDrinksConsumed != currentDrinks) {
+                numDrinksConsumed = currentDrinks;
+                sharedPref
+                        .edit()
+                        .putInt(getString(R.string.beverages_consumed), numDrinksConsumed)
+                        .apply();
+            }
+        }
+        else {
+            Iterator<Map.Entry<String,Integer>> iter =
+                    Objects.requireNonNull(numDrinksPerType).entrySet().iterator();
+            int currentDrinks = 0;
+            while (iter.hasNext()) {
+                Map.Entry<String,Integer> entry = iter.next();
+                currentDrinks += entry.getValue();
+            }
+            if (numDrinksConsumed != currentDrinks) {
+                numDrinksConsumed = currentDrinks;
+                sharedPref
+                        .edit()
+                        .putInt(getString(R.string.beverages_consumed), numDrinksConsumed)
+                        .apply();
             }
         }
 
@@ -82,7 +114,14 @@ public class DrinkCounter extends AppCompatActivity implements View.OnClickListe
                 drinkTypes.add(key + " - 0");
             }
             else {
-                currentValue += numDrinksPerType.get(key) * DrinkConstants.DRINK_TYPES.get(key);
+                if (costPerDrinkType == null
+                        || costPerDrinkType.get(key) == null
+                        || costPerDrinkType.get(key) == 0) {
+                    currentValue += numDrinksPerType.get(key) * DrinkConstants.DRINK_TYPES.get(key);
+                }
+                else {
+                    currentValue += numDrinksPerType.get(key) * costPerDrinkType.get(key);
+                }
                 drinkTypes.add(key + " - " + numDrinksPerType.get(key));
             }
         }
@@ -92,20 +131,20 @@ public class DrinkCounter extends AppCompatActivity implements View.OnClickListe
         // Specify the layout to use when the list of choices appears
         drinkTypeAdapter.setDropDownViewResource(R.layout.conversion_spinner_dropdown);
 
-        drinkSpinner = (Spinner) findViewById(R.id.drink_type);
+        drinkSpinner = findViewById(R.id.drink_type);
         drinkSpinner.setAdapter(drinkTypeAdapter);
 
         drinkSpinner.setOnItemSelectedListener(this);
 
-       updateTypeSpecificTextViews();
+        updateTypeSpecificTextViews();
 
-        numDrinksConsumedTV = (TextView) findViewById(R.id.num_drinks_consumed);
-        valueDrinkConsumedTV = (TextView) findViewById(R.id.value_of_drinks_consumed);
-        consumeDrinkButton = (Button) findViewById(R.id.consume_drink_button);
+        numDrinksConsumedTV = findViewById(R.id.num_drinks_consumed);
+        valueDrinkConsumedTV = findViewById(R.id.value_of_drinks_consumed);
+        consumeDrinkButton = findViewById(R.id.consume_drink_button);
 
         consumeDrinkButton.setOnClickListener(this);
 
-        removeDrinkButton = (Button) findViewById(R.id.remove_drink_button);
+        removeDrinkButton = findViewById(R.id.remove_drink_button);
         removeDrinkButton.setOnClickListener(this);
 
         ButtonUtil.buttonEffect(consumeDrinkButton, this);
@@ -118,10 +157,6 @@ public class DrinkCounter extends AppCompatActivity implements View.OnClickListe
         //TODO USE BELOW FOR LONG-TERM SAVING
         //HomePage.cruise = (new CruiseIO(this.getFilesDir())).readCruise();
         //numDrinksConsumed = HomePage.cruise.getNumDrinksConsumed();
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        numDrinksConsumed = sharedPref.getInt(getString(R.string.beverages_consumed),
-                DEFAULT_NUM_BEVERAGES_CONSUMED);
 
         updateUI();
     }
@@ -156,7 +191,14 @@ public class DrinkCounter extends AppCompatActivity implements View.OnClickListe
             numDrinksPerType.remove(itemKey);
             numDrinksPerType.put(itemKey, currentValueOfDrinksConsumedOfThisType + 1);
 
-            currentValue += DrinkConstants.DRINK_TYPES.get(itemKey);
+            if (costPerDrinkType == null
+                    || costPerDrinkType.get(itemKey) == null
+                    || costPerDrinkType.get(itemKey) == 0) {
+                currentValue += DrinkConstants.DRINK_TYPES.get(itemKey);
+            }
+            else {
+                currentValue += costPerDrinkType.get(itemKey);
+            }
 
             HomePage.cruise.setNumDrinksConsumed(numDrinksConsumed);
             updateUI();
@@ -176,7 +218,14 @@ public class DrinkCounter extends AppCompatActivity implements View.OnClickListe
                     }
                     numDrinksPerType.put(itemKey, currentValueOfDrinksConsumedOfThisType);
 
-                    currentValue -= DrinkConstants.DRINK_TYPES.get(itemKey);
+                    if (costPerDrinkType == null
+                            || costPerDrinkType.get(itemKey) == null
+                            || costPerDrinkType.get(itemKey) == 0) {
+                        currentValue -= DrinkConstants.DRINK_TYPES.get(itemKey);
+                    }
+                    else {
+                        currentValue -= costPerDrinkType.get(itemKey);
+                    }
 
                     HomePage.cruise.setNumDrinksConsumed(numDrinksConsumed);
                     updateUI();
@@ -199,10 +248,20 @@ public class DrinkCounter extends AppCompatActivity implements View.OnClickListe
 
         String label = "Number of " + currentType.toLowerCase() + "s consumed: ";
         String value = numDrinksPerType.get(currentType).toString();
-        String disclaimer = "Based on a value of $" +
-                String.format(locale, "%.02f",
-                        DrinkConstants.DRINK_TYPES.get(currentType)) + " per " +
-                currentType.toLowerCase();
+        String disclaimer;
+        if (costPerDrinkType != null
+                && costPerDrinkType.get(currentType) != null
+                && costPerDrinkType.get(currentType) != 0) {
+            disclaimer = "Based on a value of $" +
+                    String.format(locale, "%.02f",
+                            costPerDrinkType.get(currentType)) + " per " +
+                    currentType.toLowerCase();
+        } else {
+            disclaimer = "Based on a value of $" +
+                    String.format(locale, "%.02f",
+                            DrinkConstants.DRINK_TYPES.get(currentType)) + " per " +
+                    currentType.toLowerCase();
+        }
         drinkTypeCountLabel.setText(label);
         drinkTypeCountValue.setText(value);
         drinkTypeCountDisclaimer.setText(disclaimer);

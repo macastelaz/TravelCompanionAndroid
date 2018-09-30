@@ -31,7 +31,6 @@ public class HomePage extends AppCompatActivity{
     private static final String CRUISE_COMPANION_TAG = "CRUISE_COMPANION";
 
     private static final String STRING_PREFERENCE_NOT_FOUND = "";
-    private static final int DAYS_PER_WEEK = 7;
     public static Calendar cruiseDateTime = Calendar.getInstance();
 
     public static final int UNIT_CONVERTER_ID = 0;
@@ -41,6 +40,7 @@ public class HomePage extends AppCompatActivity{
     public static final int TRIP_INFORMATION_ID = 4;
     public static final int EXPENSES_ID = 5;
     public static final int SETTINGS_ID = 6;
+    public static final int TRIP_CHECKLIST_ID = 7;
 
     private TextView tripCountDown;
     private GridViewAdapter adapter;
@@ -53,6 +53,7 @@ public class HomePage extends AppCompatActivity{
     private TileController tripInformation;
     private TileController expenses;
     private TileController settings;
+    private TileController tripChecklists;
 
     public static Cruise cruise;
 
@@ -67,8 +68,8 @@ public class HomePage extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         applicationContext = this.getApplicationContext();
-        GridView tileGrid = (GridView) findViewById(R.id.tile_grid);
-        tripCountDown = (TextView) findViewById(R.id.trip_countdown);
+        GridView tileGrid = findViewById(R.id.tile_grid);
+        tripCountDown = findViewById(R.id.trip_countdown);
         adapter = new GridViewAdapter(this);
         tileGrid.setAdapter(adapter);
 
@@ -165,7 +166,6 @@ public class HomePage extends AppCompatActivity{
                     long mHour = period.getHours();
                     long mMin = period.getMinutes();
                     long mSec = period.getSeconds();
-                    Locale locale = Locale.getDefault();
                     String countDownString =
                             mDay + "d " +
                             mHour + "h " +
@@ -200,12 +200,15 @@ public class HomePage extends AppCompatActivity{
         tripInformation = new TileController(this, "Trip Info",
                 ContextCompat.getDrawable(appContext, R.drawable.trip_information),
                 TRIP_INFORMATION_ID);
+        tripChecklists = new TileController(this, "Trip Checklists",
+                ContextCompat.getDrawable(appContext, R.drawable.checklist), TRIP_CHECKLIST_ID);
         expenses = new TileController(this, "Expenses",
                 ContextCompat.getDrawable(appContext, R.drawable.expenses),
                 EXPENSES_ID);
         settings = new TileController(this, "Settings",
                 ContextCompat.getDrawable(appContext, R.drawable.settings),
                 SETTINGS_ID);
+
     }
 
     private void addTiles(){
@@ -214,6 +217,7 @@ public class HomePage extends AppCompatActivity{
         adapter.addTile(tripAgenda);
         adapter.addTile(drinkCounter);
         adapter.addTile(tripInformation);
+        adapter.addTile(tripChecklists);
         adapter.addTile(expenses);
         adapter.addTile(settings);
     }

@@ -24,6 +24,11 @@
         android:summary="@string/notification_preferences_summary"
         android:layout="@layout/custom_preference"/>
     <Preference
+        android:key="@string/drink_prices_preferences_key"
+        android:title="@string/drink_prices_preferences_title"
+        android:summary="@string/drink_prices_preferences_summary"
+        android:layout="@layout/custom_preference"/>
+    <Preference
         android:key="@string/cruise_save_key"
         android:title="@string/cruise_save_title"
         android:summary="@string/cruise_save_summary"

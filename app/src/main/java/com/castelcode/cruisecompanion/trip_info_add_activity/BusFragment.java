@@ -77,35 +77,30 @@ public class BusFragment extends Fragment implements View.OnClickListener{
     public void onViewCreated(View view, Bundle resources){
         View viewToUse = this.getView();
         if(viewToUse != null) {
-            departureDateButton = (Button) viewToUse.findViewById(R.id.bus_departure_date_value);
-            departureTimeButton = (Button) viewToUse.findViewById(R.id.bus_departure_time_value);
-            arrivalTimeButton = (Button) viewToUse.findViewById(R.id.arrival_time_value);
+            departureDateButton = viewToUse.findViewById(R.id.bus_departure_date_value);
+            departureTimeButton = viewToUse.findViewById(R.id.bus_departure_time_value);
+            arrivalTimeButton = viewToUse.findViewById(R.id.arrival_time_value);
 
             departureTimeButton.setOnClickListener(this);
             arrivalTimeButton.setOnClickListener(this);
         }
         if(info != null && viewToUse != null){
-            EditText nameText = (EditText) viewToUse.findViewById(R.id.name_value);
+            EditText nameText = viewToUse.findViewById(R.id.name_value);
             nameText.setText(info.getPrimaryName());
 
-            EditText confNumberText =
-                    (EditText) viewToUse.findViewById(R.id.confrimation_code_value);
+            EditText confNumberText = viewToUse.findViewById(R.id.confrimation_code_value);
             confNumberText.setText(info.getConfirmationNumber());
 
-            EditText phoneNumberText =
-                    (EditText) viewToUse.findViewById(R.id.phone_number_value);
+            EditText phoneNumberText = viewToUse.findViewById(R.id.phone_number_value);
             phoneNumberText.setText(info.getPhoneNumber());
 
-            EditText seatNumberText =
-                    (EditText) viewToUse.findViewById(R.id.seat_assignment_value);
+            EditText seatNumberText = viewToUse.findViewById(R.id.seat_assignment_value);
             seatNumberText.setText(info.getSeatNumber());
 
-            EditText originText =
-                    (EditText) viewToUse.findViewById(R.id.origin_value);
+            EditText originText = viewToUse.findViewById(R.id.origin_value);
             originText.setText(info.getOrigin());
 
-            EditText destinationText =
-                    (EditText) viewToUse.findViewById(R.id.destination_value);
+            EditText destinationText = viewToUse.findViewById(R.id.destination_value);
             destinationText.setText(info.getDestination());
             if(info.getStartDate() == null || info.getStartDate().equals("")){
                 departureDateButton.setText(getString(R.string.select_date));

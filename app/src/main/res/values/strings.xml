@@ -12,6 +12,9 @@
     <string name="add_log_entry_page_title">Add Log Entry</string>
     <string name="add_date_entry_page_title">Add Agenda Item</string>
     <string name="notifications_preferences_page_title">Notification settings</string>
+    <string name="drink_prices_preferences_page_title">Drink price settings</string>
+    <string name="trip_checklists_page_title">Trip Checklists</string>
+    <string name="trip_checklist_edit_page_title">Edit Trip Checklist</string>
 
     <string name="preference_file_key">com.castelcode.cruisecompanion.PREFERENCE_FILE_KEY</string>
     <string name="date_key">cruiseDate</string>
@@ -23,6 +26,9 @@
     <string name="notification_preferences_key">notificationPreferences</string>
     <string name="notification_preferences_title">Notification Settings</string>
     <string name="notification_preferences_summary">Select how you wish to be notified about upcoming reservations.</string>
+    <string name="drink_prices_preferences_key">drinkPricesPreferences</string>
+    <string name="drink_prices_preferences_title">Drink Price Settings</string>
+    <string name="drink_prices_preferences_summary">Customize the drink prices for your cruise.</string>
     <string name="date_not_set">Please remember to set the date and time that your trip begins in the setting menu.</string>
     <string name="trip_countdown_prefix">Your trip will begin in: </string>
     <string name="not_applicable">N/A</string>
@@ -232,7 +238,7 @@
     <string name="select_departure_date">Select a departure date</string>
     <string name="select_departure_time">Select a departure time</string>
     <string name="select_arrival_time">Select an arrival time</string>
-    <string name="title_activity_share_trip_info">ShareTripInfo</string>
+    <string name="title_activity_share_cruise_item">ShareCruiseItem</string>
 
     <string name="title_connecting">connecting…</string>
     <string name="title_connected_to">connected to <xliff:g id="device_name">%1$s</xliff:g></string>
@@ -252,4 +258,25 @@
     <string name="bus_notifications_label">Bus Notifications</string>
     <string name="bus_notifications_description">Select this to receive a notification 24 hours and 15 minutes before your bus reservations</string>
 
+    <string name="checklist_entry">ChecklistEntry</string>
+    <string name="checklist_instance">ChecklistInstance</string>
+    <string name="add_checklist_item">Add an item</string>
+
+    <string name="cocktail_label">Cocktail:</string>
+    <string name="wine_label">Wine:</string>
+    <string name="beer_label">Beer:</string>
+    <string name="coffee_label">Coffee:</string>
+    <string name="soda_label">Soda:</string>
+    <string name="water_label">Water:</string>
+    <string name="juice_label">Juice:</string>
+    <string name="reset_to_defaults">Reset Defaults</string>
+
+    <string name="include_rating_scale_label">Include rating scale</string>
+    <string-array name="sort_options">
+        <item>Original Order</item>
+        <item>Name Asc.</item>
+        <item>Name Desc.</item>
+        <item>Rating Asc.</item>
+        <item>Rating Desc.</item>
+    </string-array>
 </resources>

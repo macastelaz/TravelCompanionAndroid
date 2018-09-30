@@ -9,6 +9,7 @@ import com.castelcode.cruisecompanion.tile_activities.DrinkCounter;
 import com.castelcode.cruisecompanion.tile_activities.Expenses;
 import com.castelcode.cruisecompanion.HomePage;
 import com.castelcode.cruisecompanion.tile_activities.TripAgenda;
+import com.castelcode.cruisecompanion.tile_activities.TripChecklists;
 import com.castelcode.cruisecompanion.tile_activities.TripInformation;
 import com.castelcode.cruisecompanion.tile_activities.TripLog;
 import com.castelcode.cruisecompanion.tile_activities.UnitConverter;
@@ -50,6 +51,9 @@ class GridViewClickListener implements View.OnClickListener
                 break;
             case HomePage.SETTINGS_ID:
                 intent = new Intent(mContext, CruiseSettings.class);
+                break;
+            case HomePage.TRIP_CHECKLIST_ID:
+                intent = new Intent(mContext, TripChecklists.class);
                 break;
             default:
                 validIntent = false;

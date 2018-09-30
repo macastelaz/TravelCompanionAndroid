@@ -24,6 +24,8 @@ import com.castelcode.cruisecompanion.expenses.Expense;
 import com.castelcode.cruisecompanion.log_entry_add_activity.LogEntry;
 import com.castelcode.cruisecompanion.preferences.DatePreference;
 import com.castelcode.cruisecompanion.preferences.SelectNotificationPreferences;
+import com.castelcode.cruisecompanion.preferences.SetDrinkPricesPreferences;
+import com.castelcode.cruisecompanion.trip_checklists.Checklist;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.CruiseInfo;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.FlightInfo;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.HotelInfo;
@@ -41,6 +43,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,6 +58,7 @@ public class CruiseSettings extends PreferenceActivity {
     private static final String CRUISE_SETTINGS_TAG = "CRUISE_SETTINGS";
 
     private static final int SET_NOTIFICATION_PREFERENCES = 1;
+    private static final int SET_DRINK_PRICE_PREFERENCES = 2;
 
     static Preference saveButton;
     static Preference resetButton;
@@ -63,6 +67,7 @@ public class CruiseSettings extends PreferenceActivity {
     static Preference datePreference;
     static Preference timePreference;
     static Preference notificationPreferences;
+    static Preference drinkPricePreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +95,14 @@ public class CruiseSettings extends PreferenceActivity {
             datePreference = findPreference(getString(R.string.date_key));
             timePreference = findPreference(getString(R.string.time_key));
             notificationPreferences = findPreference("notificationPreferences");
-
+            drinkPricePreferences = findPreference(getString(R.string.drink_prices_preferences_key));
 
             saveButton.setOnPreferenceClickListener(this);
             resetButton.setOnPreferenceClickListener(this);
             loadButton.setOnPreferenceClickListener(this);
             deleteButton.setOnPreferenceClickListener(this);
             notificationPreferences.setOnPreferenceClickListener(this);
+            drinkPricePreferences.setOnPreferenceClickListener(this);
         }
 
         private void setupCruiseWithCurrentInformation(SharedPreferences pref, Gson gson,
@@ -142,6 +148,12 @@ public class CruiseSettings extends PreferenceActivity {
             String logEntriesString = pref.getString(getString(R.string.log_entry), "");
             ArrayList<LogEntry> logEntries = gson.fromJson(logEntriesString, logEntriesType);
             HomePage.cruise.setLogEntries(logEntries);
+
+            Type checklistsType = new TypeToken<ArrayList<Checklist>>(){}.getType();
+            String checklistsString =
+                    pref.getString(getString(R.string.checklist_entry), "");
+            ArrayList<Checklist> checklists = gson.fromJson(checklistsString, checklistsType);
+            HomePage.cruise.setChecklists(checklists);
 
             String dateString = pref.getString(getString(R.string.date_key),
                     "");
@@ -237,10 +249,15 @@ public class CruiseSettings extends PreferenceActivity {
                                   ArrayList<String> cruiseNames ){
             setupCruiseWithCurrentInformation(pref, gson, name);
 
-            boolean saveSuccessful =
-                    HomePage.cruise.save(
-                            new CruiseIO(getActivity().getFilesDir()), name,
-                            this.getActivity().getApplicationContext());
+            boolean saveSuccessful = true;
+            try {
+                HomePage.cruise.save(
+                        new CruiseIO(getActivity().getFilesDir()), name,
+                        this.getActivity().getApplicationContext());
+            }
+            catch (Exception ex) {
+                saveSuccessful = false;
+            }
             if (saveSuccessful) {
                 cruiseNames.add(name);
                 String saveJsonText = gson.toJson(cruiseNames);
@@ -327,6 +344,12 @@ public class CruiseSettings extends PreferenceActivity {
 
             String logJson = genericGson.toJson(HomePage.cruise.getLogEntries(), listOfLogEntry);
             editor.putString(getString(R.string.log_entry), logJson);
+
+            Type listOfChecklists = new TypeToken<ArrayList<Checklist>>(){}.getType();
+
+            String checklistJson =
+                    genericGson.toJson(HomePage.cruise.getChecklists(), listOfChecklists);
+            editor.putString(getString(R.string.checklist_entry), checklistJson);
 
             //Handle Time and cruise name
 
@@ -460,10 +483,15 @@ public class CruiseSettings extends PreferenceActivity {
         }
 
         private void notificationPreferencesClicked() {
-            Log.d("TEST", "NOTIFICATION PREFERENCES CLICKED");
             Intent launchNotificationPage = new Intent(this.getActivity(),
                     SelectNotificationPreferences.class);
             startActivityForResult(launchNotificationPage, SET_NOTIFICATION_PREFERENCES);
+        }
+
+        private void drinkPricePreferencesClicked() {
+            Intent launchDrinkPricesPage = new Intent(this.getActivity(),
+                    SetDrinkPricesPreferences.class);
+            startActivityForResult(launchDrinkPricesPage, SET_DRINK_PRICE_PREFERENCES);
         }
 
         @Override
@@ -621,6 +649,10 @@ public class CruiseSettings extends PreferenceActivity {
             }
             else if(preference == notificationPreferences) {
                 notificationPreferencesClicked();
+                return true;
+            }
+            else if(preference == drinkPricePreferences) {
+                drinkPricePreferencesClicked();
                 return true;
             }
             return false;

@@ -4,10 +4,12 @@ package com.castelcode.cruisecompanion;
 import android.content.Context;
 import android.util.Log;
 
+import com.castelcode.cruisecompanion.DrinkPricePreference.DrinkPricePreferenceWrapper;
 import com.castelcode.cruisecompanion.NotificationPreference.NotificationPreferenceWrapper;
 import com.castelcode.cruisecompanion.agenda_entry.DateEntry;
 import com.castelcode.cruisecompanion.expenses.Expense;
 import com.castelcode.cruisecompanion.log_entry_add_activity.LogEntry;
+import com.castelcode.cruisecompanion.trip_checklists.Checklist;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.Info;
 import com.castelcode.cruisecompanion.utils.CruiseIO;
 import com.castelcode.cruisecompanion.utils.SettingsConstants;
@@ -16,6 +18,9 @@ import com.castelcode.cruisecompanion.utils.SharedPreferencesManager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class Cruise implements Serializable {
@@ -31,7 +36,9 @@ public class Cruise implements Serializable {
     private ArrayList<LogEntry> logEntries;
     private TreeMap<String, ArrayList<DateEntry>> agendaEntries;
     private ArrayList<Expense> expenses;
+    private ArrayList<Checklist> checklists;
     private ArrayList<NotificationPreferenceWrapper> notificationPreferences = new ArrayList<>();
+    private ArrayList<DrinkPricePreferenceWrapper> drinkPricePreferences = new ArrayList<>();
 
     public void setCruiseDateTime(Calendar dateTime){
         cruiseDateTime = dateTime;
@@ -69,6 +76,8 @@ public class Cruise implements Serializable {
         cruiseDateTime.set(Calendar.MINUTE, minute);
     }
 
+    public void setChecklists(ArrayList<Checklist> checklists) {this.checklists = checklists; }
+
     public boolean save(CruiseIO io, String name, Context context){
         notificationPreferences.add(new NotificationPreferenceWrapper
                 ("cruise_notifications", SharedPreferencesManager.getBooleanFromSP(
@@ -82,6 +91,12 @@ public class Cruise implements Serializable {
         notificationPreferences.add(new NotificationPreferenceWrapper
                 ("bus_notifications", SharedPreferencesManager.getBooleanFromSP(
                         SettingsConstants.BUS_NOTIFICATION_PREFERENCE_TAG, context)));
+        Map<String, Double> prices = SharedPreferencesManager.getDrinkPrices(context);
+        for (Map.Entry<String, Double> entry : Objects.requireNonNull(prices).entrySet()) {
+            String key = entry.getKey();
+            Double value = entry.getValue();
+            drinkPricePreferences.add(new DrinkPricePreferenceWrapper(key, value));
+        }
         if(this.getCruiseDateTime() == null){
             Calendar defaultDate = Calendar.getInstance();
             defaultDate.clear();
@@ -117,6 +132,7 @@ public class Cruise implements Serializable {
             this.setAgendaEntries(readCruise.getAgendaEntries());
             this.setCruiseName(readCruise.getCruiseName());
             this.setLogEntries(readCruise.getLogEntries());
+            this.setChecklists(readCruise.getChecklists());
             this.setExpenses(readCruise.getExpenses());
             for ( NotificationPreferenceWrapper wrapper  : readCruise.getNotificationPreferences())
             {
@@ -149,6 +165,11 @@ public class Cruise implements Serializable {
                         Log.i("CRUISE", "Preference type not recognized on read.");
                 }
             }
+            Map<String, Double> prices = new HashMap<>();
+            for (DrinkPricePreferenceWrapper wrapper: readCruise.getDrinkPricePreferences()) {
+                prices.put(wrapper.getDrinkName(), wrapper.getDrinkPrice());
+            }
+            SharedPreferencesManager.saveDrinkPrices(context, prices);
             return true;
         }
         else{
@@ -171,13 +192,18 @@ public class Cruise implements Serializable {
 
     public ArrayList<LogEntry> getLogEntries(){ return logEntries; }
 
+    public ArrayList<Checklist> getChecklists() {return this.checklists; }
+
     public TreeMap<String, ArrayList<DateEntry>> getAgendaEntries(){ return agendaEntries; }
 
     public ArrayList<Expense> getExpenses(){ return expenses; }
 
-    public ArrayList<NotificationPreferenceWrapper> getNotificationPreferences()
-    {
+    private ArrayList<NotificationPreferenceWrapper> getNotificationPreferences() {
         return notificationPreferences;
+    }
+
+    private ArrayList<DrinkPricePreferenceWrapper> getDrinkPricePreferences() {
+        return drinkPricePreferences;
     }
 
 }

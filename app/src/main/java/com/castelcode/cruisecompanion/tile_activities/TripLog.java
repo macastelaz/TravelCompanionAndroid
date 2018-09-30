@@ -69,7 +69,7 @@ public class TripLog extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_log);
 
-        addLogItemButton = (FloatingActionButton) findViewById(R.id.add_entry_button);
+        addLogItemButton = findViewById(R.id.add_entry_button);
 
         addLogItemButton.setOnClickListener(this);
 
@@ -88,7 +88,7 @@ public class TripLog extends AppCompatActivity implements View.OnClickListener {
             logEntryItems.addAll(readItems);
         }
 
-        logEntryItemsView = (ListView) findViewById(R.id.log_entry_list_view);
+        logEntryItemsView = findViewById(R.id.log_entry_list_view);
 
         adapter = new LogEntryItemsBaseAdapter(this, logEntryItems);
 
@@ -127,7 +127,7 @@ public class TripLog extends AppCompatActivity implements View.OnClickListener {
             builder.create().show();
             return true;
         });
-        shareButton = (Button) findViewById(R.id.share);
+        shareButton = findViewById(R.id.share);
         shareButton.setOnClickListener(this);
     }
 

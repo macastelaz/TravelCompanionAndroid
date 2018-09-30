@@ -8,7 +8,7 @@ public class DateString implements Comparable<DateString>{
     private String dateString;
 
     public DateString(String date){
-        dateString = DateStringUtil.convertToOneIndexed(date);
+        dateString = date;
     }
 
     public String getDateString(){
@@ -17,7 +17,7 @@ public class DateString implements Comparable<DateString>{
 
     /**
      * Compares the dates contained within two DateStrings
-     * @param o
+     * @param o The date to comapre with.
      * @return 0 if dates are equal, -1 if this date is before the passed in date, 1 otherwise.
      */
     @Override

@@ -4,12 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.VisibleForTesting;
 
+import com.castelcode.protobuf.TripInfoProtos;
+
 import java.io.Serializable;
 
 public class CruiseInfo extends Info implements Parcelable, Serializable {
 
     @SuppressWarnings("unused")
     private final String type = "Cruise";
+    @SuppressWarnings("WeakerAccess")
     public static final String typeOfItem = "Cruise";
 
     private String mRoomNumber;
@@ -36,7 +39,17 @@ public class CruiseInfo extends Info implements Parcelable, Serializable {
         mShipName = parts[7];
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    public CruiseInfo(TripInfoProtos.CruiseInformation cruiseInfo) {
+        mPrimaryName = cruiseInfo.getCruiseLine();
+        mConfirmationNumber = cruiseInfo.getConfirmationNumber();
+        mPhoneNumber = cruiseInfo.getPhoneNumber();
+        mStartDate = cruiseInfo.getDepartureDate();
+        mStartTime = cruiseInfo.getDepartureTime();
+        mRoomNumber = cruiseInfo.getRoomNumber();
+        mShipName = cruiseInfo.getShipName();
+    }
+
+    @VisibleForTesting()
     public CruiseInfo(Parcel in) {
         mPrimaryName = in.readString();
         mConfirmationNumber = in.readString();

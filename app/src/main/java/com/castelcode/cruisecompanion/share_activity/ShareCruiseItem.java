@@ -1,4 +1,4 @@
-package com.castelcode.cruisecompanion.trip_info_share_activity;
+package com.castelcode.cruisecompanion.share_activity;
 
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -13,7 +13,9 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,11 +24,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.castelcode.cruisecompanion.bluetooth.BluetoothShareService;
-import com.castelcode.cruisecompanion.bluetooth.Constants;
 import com.castelcode.cruisecompanion.R;
 import com.castelcode.cruisecompanion.adapters.BluetoothDevicesAdapter;
+import com.castelcode.cruisecompanion.bluetooth.BluetoothShareService;
+import com.castelcode.cruisecompanion.bluetooth.Constants;
+import com.castelcode.cruisecompanion.tile_activities.TripAgenda;
+import com.castelcode.cruisecompanion.tile_activities.TripChecklists;
 import com.castelcode.cruisecompanion.tile_activities.TripInformation;
+import com.castelcode.cruisecompanion.tile_activities.TripLog;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.BusInfo;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.CruiseInfo;
 import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.FlightInfo;
@@ -35,22 +40,22 @@ import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.Info;
 import com.castelcode.cruisecompanion.utils.DeviceItem;
 import com.castelcode.cruisecompanion.utils.DeviceUuidFactory;
 import com.castelcode.cruisecompanion.utils.TripInfoConstants;
-
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemClickListener,
-    View.OnClickListener{
-
-    private static final String SHARE_TRIP_INFORMATION_TAG = "ShareTripInformation";
+public class ShareCruiseItem extends AppCompatActivity implements ListView.OnItemClickListener,
+        View.OnClickListener{
+    public static final String SHARE_ITEM_TYPE_NAME = "ShareItemType";
+    private static final String SHARE_CRUISE_ITEM_TAG = "ShareCruiseItem";
 
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int EMAIL_SEND = 2;
@@ -66,6 +71,8 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
     private static ProgressDialog progress;
 
     private static int positionOfItemToShare;
+
+    private static SupportedShareItemTypes type;
 
     /**
      * Member object for the chat services
@@ -85,9 +92,57 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
 
     private String deviceUUID;
 
-    private ArrayList<ChildEventListener> listenters;
+    private ArrayList<ChildEventListener> listeners;
 
     private Button shareViaEmailButton;
+
+    @Override
+    public Intent getSupportParentActivityIntent() {
+        return getParentActivityIntentImpl();
+    }
+
+    @Override
+    public Intent getParentActivityIntent() {
+        return getParentActivityIntentImpl();
+    }
+
+    private Intent getParentActivityIntentImpl() {
+        Intent i = null;
+        // Here you need to do some logic to determine from which Activity you came.
+        // example: you could pass a variable through your Intent extras and check that.
+        switch(type) {
+            case TRIP_LOG:
+                i = new Intent(this, TripLog.class);
+                // set any flags or extras that you need.
+                // If you are reusing the previous Activity (i.e. bringing it to the top
+                // without re-creating a new instance) set these flags:
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                break;
+            case TRIP_AGENDA:
+                i = new Intent(this, TripAgenda.class);
+                // set any flags or extras that you need.
+                // If you are reusing the previous Activity (i.e. bringing it to the top
+                // without re-creating a new instance) set these flags:
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                break;
+            case TRIP_INFO:
+                i = new Intent(this, TripInformation.class);
+                // set any flags or extras that you need.
+                // If you are reusing the previous Activity (i.e. bringing it to the top
+                // without re-creating a new instance) set these flags:
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                break;
+            case TRIP_CHECKLISTS:
+                i = new Intent(this, TripChecklists.class);
+                // set any flags or extras that you need.
+                // If you are reusing the previous Activity (i.e. bringing it to the top
+                // without re-creating a new instance) set these flags:
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                break;
+        }
+        return i;
+    }
+
 
     @SuppressWarnings("unchecked")
     private void setupAndroidToIOSTransfer() {
@@ -99,12 +154,18 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
                 if(value != null) {
                     Iterator it = value.entrySet().iterator();
                     Map.Entry<String, Boolean> entry = (Map.Entry<String, Boolean>) it.next();
-                    if (entry.getKey().equals("connectionInitiatedWith")) {
+                    if (entry.getKey().equals(TripInfoConstants.CONNECTION_KEY)
+                            && type.equals(SupportedShareItemTypes.TRIP_INFO)) {
+                        if(it.hasNext()) {
+                            entry = (Map.Entry<String, Boolean>) it.next();
+                        }
+                    } else if (entry.getKey().equals("tripAgendaConnection")
+                            && type.equals(SupportedShareItemTypes.TRIP_AGENDA)) {
                         if(it.hasNext()) {
                             entry = (Map.Entry<String, Boolean>) it.next();
                         }
                     }
-                    if (entry.getValue() != null && entry.getValue() &&
+                    if (entry.getValue() != null &&
                             !entry.getKey().equals(deviceUUID)) {
                         System.out.println("ADDING ANDROID DEVICE OVER FIREBASE W/ KEY: " + dataSnapshot.getKey());
                         DeviceItem newDevice = new DeviceItem(dataSnapshot.getKey(), entry.getKey(), true);
@@ -118,7 +179,7 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String s) {
 
             }
 
@@ -137,25 +198,25 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String s) {
 
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         };
         ref.child(TripInfoConstants.USER_PATH).addChildEventListener(newListener);
-        listenters.add(newListener);
+        listeners.add(newListener);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share_trip_info);
+        setContentView(R.layout.activity_share_info);
 
-        shareViaEmailButton = (Button) findViewById(R.id.share_via_email_button);
+        shareViaEmailButton = findViewById(R.id.share_via_email_button);
         shareViaEmailButton.setOnClickListener(this);
 
         progress = new ProgressDialog(this);
@@ -163,17 +224,19 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
         progress.setMessage("Please wait while we create your document");
         progress.setCancelable(false);
 
-        listenters = new ArrayList<>();
+        listeners = new ArrayList<>();
         deviceUUID = new DeviceUuidFactory(this).getDeviceUuidAsString();
 
         database = FirebaseDatabase.getInstance();
 
         deviceItemList = new ArrayList<>();
-        devices = (ListView) findViewById(R.id.bluetooth_devices);
+        devices = findViewById(R.id.bluetooth_devices);
+
+        type = (SupportedShareItemTypes) getIntent().getSerializableExtra(SHARE_ITEM_TYPE_NAME);
 
         String itemToShare = getIntent().getStringExtra(TripInformation.ITEM_TO_SHARE_NAME);
         message = getIntent().getStringExtra((TripInformation.ITEM_TO_SHARE_VALUE));
-        TextView itemToShareText = (TextView) findViewById(R.id.share_item_title);
+        TextView itemToShareText = findViewById(R.id.share_item_title);
         String title = "Share "+ itemToShare + " with:";
         itemToShareText.setText(title);
 
@@ -190,9 +253,9 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
             public void run() {
                 try {
                     Thread.sleep(Toast.LENGTH_SHORT); // *2 in best case of bt share time.
-                    ShareTripInfo.this.runOnUiThread(() ->
-                        Toast.makeText(context,
-                                "Data shared successfully", Toast.LENGTH_SHORT).show());
+                    ShareCruiseItem.this.runOnUiThread(() ->
+                            Toast.makeText(context,
+                                    "Data shared successfully", Toast.LENGTH_SHORT).show());
                     Thread.sleep(Toast.LENGTH_SHORT);
                     mShareService.stop();
                     finish();
@@ -207,8 +270,8 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
             public void run() {
                 try {
                     Thread.sleep(Toast.LENGTH_SHORT); // *2 in best case of bt share time.
-                    ShareTripInfo.this.runOnUiThread(() ->
-                            Toast.makeText(ShareTripInfo.this,
+                    ShareCruiseItem.this.runOnUiThread(() ->
+                            Toast.makeText(context,
                                     "Data could not be sent", Toast.LENGTH_SHORT).show());
                     Thread.sleep(Toast.LENGTH_SHORT);
                 } catch (Exception e) {
@@ -221,10 +284,10 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
     @Override
     public void onPause() {
         super.onPause();
-        for (ChildEventListener listener : listenters) {
+        for (ChildEventListener listener : listeners) {
             ref.removeEventListener(listener);
         }
-        listenters.clear();
+        listeners.clear();
     }
 
     @Override
@@ -259,7 +322,7 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
      * Set up the UI and background operations for sending information.
      */
     private void setupDataSend() {
-        Log.d(SHARE_TRIP_INFORMATION_TAG, "setupChat()");
+        Log.d(SHARE_CRUISE_ITEM_TAG, "setupChat()");
 
         devicesAdapter = new BluetoothDevicesAdapter(this, deviceItemList);
 
@@ -294,7 +357,7 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
     }
 
     private void proceedWithShareAfterBluetoothEnabled(){
-        Log.d(SHARE_TRIP_INFORMATION_TAG, "BT ENABLED - PROCEED");
+        Log.d(SHARE_CRUISE_ITEM_TAG, "BT ENABLED - PROCEED");
         Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
         boolean newDeviceAdded = false;
         if(pairedDevices.size() > 0) {
@@ -310,7 +373,7 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
             devicesAdapter.notifyDataSetChanged();
         }
         bluetoothAdapter.startDiscovery();
-        Log.d(SHARE_TRIP_INFORMATION_TAG, "DISCOVERY STARTED");
+        Log.d(SHARE_CRUISE_ITEM_TAG, "DISCOVERY STARTED");
 
     }
 
@@ -329,7 +392,7 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
                     return;
                 }
                 DeviceItem newDevice = new DeviceItem(deviceName, deviceHardwareAddress,
-                         false);
+                        false);
                 if(!deviceItemList.contains(newDevice) && devicesAdapter != null) {
                     deviceItemList.add(newDevice);
                     devicesAdapter.notifyDataSetChanged();
@@ -378,7 +441,7 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
     /**
      * The Handler that gets information back from the BluetoothShareService
      */
-    private final Handler mHandler = new customHandler();
+    private final Handler mHandler = new ShareCruiseItem.customHandler();
 
     @Override
     public void onClick(View v) {
@@ -387,7 +450,7 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
             progress.show();
             CreateEmailParamContainer params = new CreateEmailParamContainer(this,
                     getApplicationContext(), shareViaEmailButton);
-            new ShareTripInfo.createEmailInBackground().execute(params);
+            new ShareCruiseItem.createEmailInBackground().execute(params);
         }
     }
 
@@ -400,7 +463,7 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
                     byte[] writeBuf = (byte[]) msg.obj;
                     // construct a string from the buffer
                     String writeMessage = new String(writeBuf);
-                    Log.d(SHARE_TRIP_INFORMATION_TAG, "MESSAGE " + writeMessage + " WRITTEN");
+                    Log.d(SHARE_CRUISE_ITEM_TAG, "MESSAGE " + writeMessage + " WRITTEN");
                     break;
             }
         }
@@ -422,17 +485,31 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
                 Toast.LENGTH_SHORT).show();
         if(deviceItemList.get(position).getType()) //True means iOS so send over firebase
         {
-            ref.child(TripInfoConstants.USER_PATH).child(deviceItemList.get(position).getDeviceName()).child("connectionInitiatedWith").setValue(deviceUUID);
+            String connectionKey = "";
+            switch(type) {
+                case TRIP_AGENDA:
+                    connectionKey = "tripAgendaConnection";
+                    break;
+                case TRIP_CHECKLISTS:
+                    break;
+                case TRIP_INFO:
+                    connectionKey = TripInfoConstants.CONNECTION_KEY;
+                    break;
+                case TRIP_LOG:
+                    break;
+            }
+            ref.child(TripInfoConstants.USER_PATH).child(deviceItemList.get(position).getDeviceName())
+                    .child(connectionKey).setValue(deviceUUID);
             ref.child(getUniqueSessionIdentifier(deviceItemList.get(position))).setValue(message);
         }
         else {
             connectDevice(deviceItemList.get(position).getAddress());
-            new SendBluetoothMessageAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            new ShareCruiseItem.SendBluetoothMessageAsync().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
     }
 
     private static class SendBluetoothMessageAsync extends AsyncTask<Void, Void, Void> {
-        SendBluetoothMessageAsync asyncObject;
+        ShareCruiseItem.SendBluetoothMessageAsync asyncObject;
         boolean completedSuccessfully = false;
         @Override
         protected void onPreExecute(){
@@ -490,14 +567,14 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
 
         @Override
         protected void onCancelled() {
-           try {
-               if (!FailureThread.isAlive()) {
-                   FailureThread.start();
-               }
-           }
-           catch(IllegalStateException ex) {
-               System.out.println(ex.toString());
-           }
+            try {
+                if (!FailureThread.isAlive()) {
+                    FailureThread.start();
+                }
+            }
+            catch(IllegalStateException ex) {
+                System.out.println(ex.toString());
+            }
 
         }
 
@@ -531,12 +608,30 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
     }
     private static void sendMail(AppCompatActivity activity) {
         try {
-            String subject = "Trip information for my upcoming travel";
+            String subject = "CruiseCompanion";
+            switch(type) {
+                case TRIP_LOG:
+                    subject = "Trip Log for my recent travel";
+                    break;
+                case TRIP_INFO:
+                    subject = "Trip information for my upcoming travel";
+                    break;
+                case TRIP_AGENDA:
+                    subject = "Trip agenda for my upcoming travel";
+                    break;
+                case TRIP_CHECKLISTS:
+                    subject = "Trip checklists for my recent travel";
+                    break;
+                case ALL_POSSIBLE:
+                    subject = "Here's everything about my travel!";
+                    break;
+            }
 
             final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-            emailIntent.setType("text/plain");
+            emailIntent.setType("text/html");
             emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,subject);
-            emailIntent.putExtra(Intent.EXTRA_TEXT, getMessageForEmail(positionOfItemToShare));
+            emailIntent.putExtra(Intent.EXTRA_HTML_TEXT, getHtmlMessageForEmail(positionOfItemToShare));
+            emailIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml(getHtmlMessageForEmail(positionOfItemToShare)));
 
 
             emailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -549,100 +644,24 @@ public class ShareTripInfo extends AppCompatActivity implements ListView.OnItemC
         }
     }
 
-    private static String getMessageForEmail(int positionOfItemToShare) {
-        StringBuilder builder = new StringBuilder();
-        if(positionOfItemToShare != -1) {
-            Info itemShared = TripInformation.infoItems.get(positionOfItemToShare);
-            if (itemShared instanceof CruiseInfo) {
-                builder.append(getCruiseEmailFriendlyString((CruiseInfo)itemShared));
-                builder.append("\n");
-            }
-            else if (itemShared instanceof HotelInfo) {
-                builder.append(getHotelEmailFriendlyString((HotelInfo)itemShared));
-                builder.append("\n");
-            }
-            else if (itemShared instanceof FlightInfo) {
-                builder.append(getFlightEmailFriendlyString((FlightInfo)itemShared));
-                builder.append("\n");
-            }
-            else if (itemShared instanceof BusInfo) {
-                builder.append(getBusEmailFriendlyString((BusInfo)itemShared));
-                builder.append("\n");
-            }
+    private static String getHtmlMessageForEmail(int positionOfItemToShare) {
+        String emailMessage = "";
+        switch(type) {
+            case TRIP_LOG:
+
+                break;
+            case TRIP_AGENDA:
+                    emailMessage = ShareTripAgendaInfoItem.getHtmlMessageForEmail(positionOfItemToShare);
+                break;
+            case TRIP_INFO:
+                emailMessage = ShareTripInfoItem.getHtmlMessageForEmail(positionOfItemToShare);
+                break;
+            case TRIP_CHECKLISTS:
+                break;
         }
-        else {
-
-            for (Info item : TripInformation.infoItems) {
-                if (item instanceof CruiseInfo) {
-                    builder.append(getCruiseEmailFriendlyString((CruiseInfo)item));
-                    builder.append("\n");
-                }
-                else if (item instanceof HotelInfo) {
-                    builder.append(getHotelEmailFriendlyString((HotelInfo)item));
-                    builder.append("\n");
-                }
-                else if (item instanceof FlightInfo) {
-                    builder.append(getFlightEmailFriendlyString((FlightInfo)item));
-                    builder.append("\n");
-                }
-                else if (item instanceof BusInfo) {
-                    builder.append(getBusEmailFriendlyString((BusInfo)item));
-                    builder.append("\n");
-                }
-            }
-        }
-        return builder.toString();
+        return emailMessage;
     }
 
-    private static String getCruiseEmailFriendlyString(CruiseInfo item) {
-        return "Cruise" + "\n\t" +
-                "Cruise line: " + item.getPrimaryName() + "\n\t" +
-                "Cruise ship: " + item.getShipName() + "\n\t" +
-                "Cruise date: " + item.getStartDate() + "\n\t" +
-                "Cruise time: " + item.getStartTime() + "\n\t" +
-                "Room number: " + item.getRoomNumber() + "\n\t" +
-                "Confirmation Number: " + item.getConfirmationNumber() + "\n\t" +
-                "Phone Number: " + item.getPhoneNumber() + "\n";
-
-    }
-    private static String getFlightEmailFriendlyString(FlightInfo item) {
-        return "Flight" + "\n\t" +
-                "Airline: " + item.getPrimaryName() + "\n\t" +
-                "Flight number: " + item.getFlightNumber() + "\n\t" +
-                "Seat number: " + item.getSeatNumber() + "\n\t" +
-                "Departure date: " + item.getStartDate() + "\n\t" +
-                "Departure time: " + item.getStartTime() + "\n\t" +
-                "Arrival time: " + item.getArrivalTime() + "\n\t" +
-                "Origin: " + item.getOrigin() + "\n\t" +
-                "Destination: " + item.getDestination() + "\n\t" +
-                "Confirmation Number: " + item.getConfirmationNumber() + "\n\t" +
-                "Phone Number: " + item.getPhoneNumber() + "\n";
-    }
-    private static String getHotelEmailFriendlyString(HotelInfo item) {
-        return "Hotel" + "\n\t" +
-                "Hotel: " + item.getPrimaryName() + "\n\t" +
-                "Address: " + item.getAddress() + "\n\t" +
-                "City: " + item.getCity() + "\n\t" +
-                "State/Province/Country: " + item.getStateProvince() + "\n\t" +
-                "Check in date: " + item.getStartDate() + "\n\t" +
-                "Check in time: " + item.getStartTime() + "\n\t" +
-                "Check out date: " + item.getCheckOutDate() + "\n\t" +
-                "Check out time: " + item.getCheckOutTime() + "\n\t" +
-                "Confirmation Number: " + item.getConfirmationNumber() + "\n\t" +
-                "Phone Number: " + item.getPhoneNumber() + "\n";
-    }
-    private static String getBusEmailFriendlyString(BusInfo item) {
-        return "Bus" + "\n\t" +
-                "Bus line: " + item.getPrimaryName() + "\n\t" +
-                "Seat number: " + item.getSeatNumber() + "\n\t" +
-                "Departure date: " + item.getStartDate() + "\n\t" +
-                "Departure time: " + item.getStartTime() + "\n\t" +
-                "Arrival time: " + item.getArrivalTime() + "\n\t" +
-                "Origin: " + item.getOrigin() + "\n\t" +
-                "Destination: " + item.getDestination() + "\n\t" +
-                "Confirmation Number: " + item.getConfirmationNumber() + "\n\t" +
-                "Phone Number: " + item.getPhoneNumber() + "\n";
-    }
     private static class createEmailInBackground extends AsyncTask<CreateEmailParamContainer,
             Void, CreateEmailParamContainer> {
 

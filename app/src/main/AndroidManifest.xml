@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -36,7 +35,8 @@
 
         <activity
             android:name=".HomePage"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -46,42 +46,81 @@
         </activity>
         <activity
             android:name=".tile_activities.CruiseSettings"
-            android:label="@string/settings_page_title" />
+            android:theme="@style/SettingsTheme"
+            android:parentActivityName=".HomePage"
+            android:label="@string/settings_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tile_activities.UnitConverter"
-            android:label="@string/unit_converter_page_title" />
+            android:parentActivityName=".HomePage"
+            android:label="@string/unit_converter_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tile_activities.DrinkCounter"
-            android:label="@string/drink_counter_page_title" />
+            android:parentActivityName=".HomePage"
+            android:label="@string/drink_counter_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tile_activities.TripAgenda"
-            android:label="@string/trip_agenda_page_title" />
+            android:parentActivityName=".HomePage"
+            android:label="@string/trip_agenda_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tile_activities.TripLog"
-            android:label="@string/trip_log_page_title" />
+            android:parentActivityName=".HomePage"
+            android:label="@string/trip_log_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tile_activities.Expenses"
-            android:label="@string/expenses_page_title" />
+            android:parentActivityName=".HomePage"
+            android:label="@string/expenses_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tile_activities.TripInformation"
             android:parentActivityName=".HomePage"
-            android:label="@string/trip_information_page_title" />
+            android:label="@string/trip_information_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".trip_info_add_activity.AddTripInfoItem"
-            android:label="@string/add_trip_information_page_title" />
+            android:parentActivityName=".tile_activities.TripInformation"
+            android:label="@string/add_trip_information_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".log_entry_add_activity.AddLogEntry"
-            android:label="@string/add_log_entry_page_title" />
+            android:parentActivityName=".tile_activities.TripLog"
+            android:label="@string/add_log_entry_page_title"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".agenda_entry.DateEntryActivity"
-            android:label="@string/add_date_entry_page_title" />
+            android:label="@string/add_date_entry_page_title"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".trip_info_share_activity.ShareTripInfo"
-            android:label="@string/title_activity_share_trip_info"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".share_activity.ShareCruiseItem"
+            android:label="@string/title_activity_share_cruise_item"
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".preferences.SelectNotificationPreferences"
-            android:label="@string/notifications_preferences_page_title" />
+            android:parentActivityName=".tile_activities.CruiseSettings"
+            android:label="@string/notifications_preferences_page_title"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".preferences.SetDrinkPricesPreferences"
+            android:parentActivityName=".tile_activities.CruiseSettings"
+            android:label="@string/drink_prices_preferences_page_title"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tile_activities.TripChecklists"
+            android:parentActivityName=".tile_activities.TripChecklists"
+            android:label="@string/trip_checklists_page_title"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".trip_checklists.trip_checklist_edit_activity.TripChecklistEdit"
+            android:parentActivityName=".tile_activities.TripChecklists"
+            android:label="@string/trip_checklist_edit_page_title"
+            android:screenOrientation="portrait" />
+
         <receiver android:name=".utils.WakefulReceiver"/>
 
         <receiver android:name=".utils.BootReceiver"
