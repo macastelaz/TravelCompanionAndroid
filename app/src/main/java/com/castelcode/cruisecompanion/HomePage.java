@@ -11,24 +11,12 @@ import android.util.Log;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.castelcode.cruisecompanion.adapters.GridViewAdapter;
 import com.castelcode.cruisecompanion.utils.DateStringUtil;
 import com.castelcode.cruisecompanion.utils.SharedPreferencesManager;
 import com.castelcode.cruisecompanion.utils.TimeStringUtil;
-import com.google.common.collect.ImmutableList;
-
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.joda.time.Days;
-import org.joda.time.DurationFieldType;
-import org.joda.time.Period;
-import org.joda.time.PeriodType;
-
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class HomePage extends AppCompatActivity{
 
