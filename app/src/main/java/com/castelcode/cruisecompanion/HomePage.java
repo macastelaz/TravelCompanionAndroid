@@ -16,12 +16,16 @@ import com.castelcode.cruisecompanion.adapters.GridViewAdapter;
 import com.castelcode.cruisecompanion.utils.DateStringUtil;
 import com.castelcode.cruisecompanion.utils.SharedPreferencesManager;
 import com.castelcode.cruisecompanion.utils.TimeStringUtil;
+import com.google.common.collect.ImmutableList;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
+import org.joda.time.DurationFieldType;
 import org.joda.time.Period;
+import org.joda.time.PeriodType;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -153,24 +157,17 @@ public class HomePage extends AppCompatActivity{
                 public void onTick(long millisUntilFinished) {
                     // TODO Auto-generated method stub
                     long currentTimeInMillis = Calendar.getInstance().getTimeInMillis();
-                    DateTime cruiseDate =
-                            new DateTime(Long.valueOf(tripTimeInMillis), DateTimeZone.UTC);
-                    DateTime currentDate =
-                            new DateTime(Long.valueOf(currentTimeInMillis), DateTimeZone.UTC);
 
-                    int mDay = Days.daysBetween(
-                            currentDate.toLocalDate(), cruiseDate.toLocalDate()).getDays();
+                    long seconds = (tripTimeInMillis-currentTimeInMillis) / 1000;
+                    long minutes = seconds / 60;
+                    long hours = minutes / 60;
+                    long days = hours / 24;
 
-                    Period period = new Period(currentTimeInMillis, tripTimeInMillis);
-
-                    long mHour = period.getHours();
-                    long mMin = period.getMinutes();
-                    long mSec = period.getSeconds();
                     String countDownString =
-                            mDay + "d " +
-                            mHour + "h " +
-                            mMin + "min " +
-                            mSec + "s";
+                            days + "d "
+                                    + hours % 24 + "h "
+                                    + minutes % 60 + "min "
+                                    + seconds % 60 + "s";
                     String countDownText = getResources().getString(R.string.trip_countdown_prefix)
                             + '\n' + countDownString;
                     tripCountDown.setText(countDownText);
