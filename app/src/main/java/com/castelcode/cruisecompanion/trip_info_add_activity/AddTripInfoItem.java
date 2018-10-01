@@ -54,7 +54,7 @@ public class AddTripInfoItem extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trip_info_item);
 
-        informationType = (Spinner) findViewById(R.id.trip_info_type);
+        informationType = findViewById(R.id.trip_info_type);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> infoTypeAdapter = ArrayAdapter.createFromResource(this,
@@ -64,8 +64,8 @@ public class AddTripInfoItem extends AppCompatActivity implements
         // Apply the adapter to the spinner
         informationType.setAdapter(infoTypeAdapter);
 
-        deleteButton = (Button) findViewById(R.id.delete_button);
-        addButton = (Button) findViewById(R.id.confirm_button);
+        deleteButton = findViewById(R.id.delete_button);
+        addButton = findViewById(R.id.confirm_button);
 
         addButton.setOnClickListener(this);
 
@@ -155,75 +155,66 @@ public class AddTripInfoItem extends AppCompatActivity implements
 
     }
 
-    private boolean validatePhoneNumber(String rawNumberText) {
+    private boolean isPhoneNumberInvalid(String rawNumberText) {
         if(rawNumberText.equals("")){
-            return true;
+            return false;
         }
         PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
         try{
             Phonenumber.PhoneNumber phoneNumberProto = phoneUtil.parse(rawNumberText,
                     "US");
-            return phoneUtil.isValidNumber(phoneNumberProto);
+            return !phoneUtil.isValidNumber(phoneNumberProto);
         } catch(NumberParseException e) {
             Log.d(TAG, "Number parse exception during phone number check: " + e.toString());
-            return false;
+            return true;
         }
     }
 
     private HotelInfo handleHotelInfoClick(){
-        FrameLayout frame = (FrameLayout) findViewById(R.id.hotel_frag);
+        FrameLayout frame = findViewById(R.id.hotel_frag);
 
-        EditText nameText = (EditText) frame.findViewById(R.id.name_value);
+        EditText nameText = frame.findViewById(R.id.name_value);
         String name = nameText.getText().toString();
 
-        EditText confNumberText =
-                (EditText) frame.findViewById(R.id.confrimation_code_value);
+        EditText confNumberText = frame.findViewById(R.id.confrimation_code_value);
         String confNumber = confNumberText.getText().toString();
 
-        EditText phoneNumberText =
-                (EditText) frame.findViewById(R.id.phone_number_value);
+        EditText phoneNumberText = frame.findViewById(R.id.phone_number_value);
         String phoneNumber = phoneNumberText.getText().toString();
 
-        if(!validatePhoneNumber(phoneNumber)) {
+        if(isPhoneNumberInvalid(phoneNumber)) {
             phoneNumberText.setError(getString(R.string.err_tel));
             return null;
         }
 
-        EditText addressText =
-                (EditText) frame.findViewById(R.id.address_value);
+        EditText addressText = frame.findViewById(R.id.address_value);
         String address = addressText.getText().toString();
 
-        EditText cityText =
-                (EditText) frame.findViewById(R.id.city_value);
+        EditText cityText = frame.findViewById(R.id.city_value);
         String city = cityText.getText().toString();
 
-        EditText stateProvinceText =
-                (EditText) frame.findViewById(R.id.state_province_value);
+        EditText stateProvinceText = frame.findViewById(R.id.state_province_value);
         String stateProvince = stateProvinceText.getText().toString();
 
-        Button checkInDateButton =
-                (Button) frame.findViewById(R.id.check_in_date_value);
+        Button checkInDateButton = frame.findViewById(R.id.check_in_date_value);
         String checkInDate = checkInDateButton.getText().toString();
         if(checkInDate.equals(getString(R.string.select_date))) {
             checkInDate = "";
         }
 
-        Button checkInTimeButton =
-                (Button) frame.findViewById(R.id.check_in_time_value);
+        Button checkInTimeButton = frame.findViewById(R.id.check_in_time_value);
         String checkInTime = checkInTimeButton.getText().toString();
         if(checkInTime.equals(getString(R.string.select_time))) {
             checkInTime = "";
         }
 
-        Button checkOutDateButton =
-                (Button) frame.findViewById(R.id.check_out_date_value);
+        Button checkOutDateButton = frame.findViewById(R.id.check_out_date_value);
         String checkOutDate = checkOutDateButton.getText().toString();
         if(checkOutDate.equals(getString(R.string.select_date))) {
             checkOutDate = "";
         }
 
-        Button checkOutTimeButton =
-                (Button) frame.findViewById(R.id.check_out_time_value);
+        Button checkOutTimeButton = frame.findViewById(R.id.check_out_time_value);
         String checkOutTime = checkOutTimeButton.getText().toString();
         if(checkOutTime.equals(getString(R.string.select_time))) {
             checkOutTime = "";
@@ -233,56 +224,47 @@ public class AddTripInfoItem extends AppCompatActivity implements
     }
 
     private FlightInfo handleFlightInfoClick(){
-        FrameLayout frame = (FrameLayout) findViewById(R.id.flight_frag);
+        FrameLayout frame = findViewById(R.id.flight_frag);
 
-        EditText nameText = (EditText) frame.findViewById(R.id.name_value);
+        EditText nameText = frame.findViewById(R.id.name_value);
         String name = nameText.getText().toString();
 
-        EditText confNumberText =
-                (EditText) frame.findViewById(R.id.confrimation_code_value);
+        EditText confNumberText = frame.findViewById(R.id.confrimation_code_value);
         String confNumber = confNumberText.getText().toString();
 
-        EditText phoneNumberText =
-                (EditText) frame.findViewById(R.id.phone_number_value);
+        EditText phoneNumberText = frame.findViewById(R.id.phone_number_value);
         String phoneNumber = phoneNumberText.getText().toString();
 
-        if(!validatePhoneNumber(phoneNumber)) {
+        if(isPhoneNumberInvalid(phoneNumber)) {
             phoneNumberText.setError(getString(R.string.err_tel));
             return null;
         }
 
-        EditText seatNumberText =
-                (EditText) frame.findViewById(R.id.seat_assignment_value);
+        EditText seatNumberText = frame.findViewById(R.id.seat_assignment_value);
         String seatNumber = seatNumberText.getText().toString();
 
-        EditText flightNumberText =
-                (EditText) frame.findViewById(R.id.flight_number_value);
+        EditText flightNumberText = frame.findViewById(R.id.flight_number_value);
         String flightNumber = flightNumberText.getText().toString();
 
-        EditText originText =
-                (EditText) frame.findViewById(R.id.origin_value);
+        EditText originText = frame.findViewById(R.id.origin_value);
         String origin = originText.getText().toString();
 
-        EditText destinationText =
-                (EditText) frame.findViewById(R.id.destination_value);
+        EditText destinationText = frame.findViewById(R.id.destination_value);
         String destination = destinationText.getText().toString();
 
-        Button departureDateButton =
-                (Button) frame.findViewById(R.id.flight_departure_date_value);
+        Button departureDateButton = frame.findViewById(R.id.flight_departure_date_value);
         String departureDate = departureDateButton.getText().toString();
         if(departureDate.equals(getString(R.string.select_date))) {
             departureDate = "";
         }
 
-        Button departureTimeButton =
-                (Button) frame.findViewById(R.id.flight_departure_time_value);
+        Button departureTimeButton = frame.findViewById(R.id.flight_departure_time_value);
         String departureTime = departureTimeButton.getText().toString();
         if(departureTime.equals(getString(R.string.select_time))) {
             departureTime = "";
         }
 
-        Button arrivalTimeButton =
-                (Button) frame.findViewById(R.id.arrival_time_value);
+        Button arrivalTimeButton = frame.findViewById(R.id.arrival_time_value);
         String arrivalTime = arrivalTimeButton.getText().toString();
         if(arrivalTime.equals(getString(R.string.select_time))) {
             arrivalTime = "";
@@ -293,41 +275,35 @@ public class AddTripInfoItem extends AppCompatActivity implements
     }
 
     private CruiseInfo handleCruiseInfoClick(){
-        FrameLayout frame = (FrameLayout) findViewById(R.id.cruise_frag);
+        FrameLayout frame = findViewById(R.id.cruise_frag);
 
-        EditText nameText = (EditText) frame.findViewById(R.id.name_value);
+        EditText nameText = frame.findViewById(R.id.name_value);
         String name = nameText.getText().toString();
 
-        EditText confNumberText =
-                (EditText) frame.findViewById(R.id.confrimation_code_value);
+        EditText confNumberText = frame.findViewById(R.id.confrimation_code_value);
         String confNumber = confNumberText.getText().toString();
 
-        EditText phoneNumberText =
-                (EditText) frame.findViewById(R.id.phone_number_value);
+        EditText phoneNumberText = frame.findViewById(R.id.phone_number_value);
         String phoneNumber = phoneNumberText.getText().toString();
 
-        if(!validatePhoneNumber(phoneNumber)) {
+        if(isPhoneNumberInvalid(phoneNumber)) {
             phoneNumberText.setError(getString(R.string.err_tel));
             return null;
         }
 
-        EditText roomNumberText =
-                (EditText) frame.findViewById(R.id.room_number_value);
+        EditText roomNumberText = frame.findViewById(R.id.room_number_value);
         String roomNumber = roomNumberText.getText().toString();
 
-        EditText shipNameText =
-                (EditText) frame.findViewById(R.id.ship_name_value);
+        EditText shipNameText = frame.findViewById(R.id.ship_name_value);
         String shipName = shipNameText.getText().toString();
 
-        Button departureDateButton =
-                (Button) frame.findViewById(R.id.cruise_departure_date_value);
+        Button departureDateButton = frame.findViewById(R.id.cruise_departure_date_value);
         String departureDate = departureDateButton.getText().toString();
         if(departureDate.equals(getString(R.string.select_date))) {
             departureDate = "";
         }
 
-        Button departureTimeButton =
-                (Button) frame.findViewById(R.id.cruise_departure_time_value);
+        Button departureTimeButton = frame.findViewById(R.id.cruise_departure_time_value);
         String departureTime = departureTimeButton.getText().toString();
         if(departureTime.equals(getString(R.string.select_time))) {
             departureTime = "";
@@ -338,52 +314,44 @@ public class AddTripInfoItem extends AppCompatActivity implements
     }
 
     private BusInfo handleBusInfoClick(){
-        FrameLayout frame = (FrameLayout) findViewById(R.id.bus_frag);
+        FrameLayout frame = findViewById(R.id.bus_frag);
 
-        EditText nameText = (EditText) frame.findViewById(R.id.name_value);
+        EditText nameText = frame.findViewById(R.id.name_value);
         String name = nameText.getText().toString();
 
-        EditText confNumberText =
-                (EditText) frame.findViewById(R.id.confrimation_code_value);
+        EditText confNumberText = frame.findViewById(R.id.confrimation_code_value);
         String confNumber = confNumberText.getText().toString();
 
-        EditText phoneNumberText =
-                (EditText) frame.findViewById(R.id.phone_number_value);
+        EditText phoneNumberText = frame.findViewById(R.id.phone_number_value);
         String phoneNumber = phoneNumberText.getText().toString();
 
-        if(!validatePhoneNumber(phoneNumber)) {
+        if(isPhoneNumberInvalid(phoneNumber)) {
             phoneNumberText.setError(getString(R.string.err_tel));
             return null;
         }
 
-        EditText seatNumberText =
-                (EditText) frame.findViewById(R.id.seat_assignment_value);
+        EditText seatNumberText = frame.findViewById(R.id.seat_assignment_value);
         String seatNumber = seatNumberText.getText().toString();
 
-        EditText originText =
-                (EditText) frame.findViewById(R.id.origin_value);
+        EditText originText = frame.findViewById(R.id.origin_value);
         String origin = originText.getText().toString();
 
-        EditText destinationText =
-                (EditText) frame.findViewById(R.id.destination_value);
+        EditText destinationText = frame.findViewById(R.id.destination_value);
         String destination = destinationText.getText().toString();
 
-        Button departureDateButton =
-                (Button) frame.findViewById(R.id.bus_departure_date_value);
+        Button departureDateButton = frame.findViewById(R.id.bus_departure_date_value);
         String departureDate = departureDateButton.getText().toString();
         if(departureDate.equals(getString(R.string.select_date))) {
             departureDate = "";
         }
 
-        Button departureTimeButton =
-                (Button) frame.findViewById(R.id.bus_departure_time_value);
+        Button departureTimeButton = frame.findViewById(R.id.bus_departure_time_value);
         String departureTime = departureTimeButton.getText().toString();
         if(departureTime.equals(getString(R.string.select_time))) {
             departureTime = "";
         }
 
-        Button arrivalTimeButton =
-                (Button) frame.findViewById(R.id.arrival_time_value);
+        Button arrivalTimeButton = frame.findViewById(R.id.arrival_time_value);
         String arrivalTime = arrivalTimeButton.getText().toString();
         if(arrivalTime.equals(getString(R.string.select_time))) {
             arrivalTime = "";

@@ -13,7 +13,7 @@ public class CurrencyConverter extends Converter {
     }
 
     @Override
-    public double convert(String originalUnit, String desiredUnit) {
+    public ResultWrapper convert(String originalUnit, String desiredUnit) {
         double euroValue = -1;
         switch (originalUnit) {
             case "CAD":
@@ -35,9 +35,9 @@ public class CurrencyConverter extends Converter {
                 Log.i(TAG, "ORIGIN CURRENCY NOT SUPPORTED");
         }
         if (euroValue == -1) {
-            return euroValue;
+            return new ResultWrapper(euroValue);
         }
-        double destinationValue = -1;
+        double destinationValue;
         switch (desiredUnit) {
             case "CAD":
                 destinationValue = euroValue * ConversionConstants.CAD;
@@ -58,6 +58,6 @@ public class CurrencyConverter extends Converter {
                 Log.i(TAG, "DESTINATION CURRENCY NOT SUPPORTED");
                 destinationValue = -1;
         }
-        return destinationValue;
+        return new ResultWrapper(destinationValue);
     }
 }

@@ -27,24 +27,17 @@
         android:orientation="horizontal"
         android:weightSum="2"
         android:padding="5dip">
-
-        <EditText
-            android:id="@+id/original_value"
+        <FrameLayout
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1.6"
-            android:layout_height="35dip"
-            android:background="@android:color/white"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textAlignment="center"/>
+            android:id="@+id/original_value_fragment"/>
 
         <Spinner
             android:id="@+id/original_unit"
             android:layout_width="0dp"
             android:layout_weight="0.4"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/spinner_border"/>
     </LinearLayout>
 
@@ -75,18 +68,11 @@
         android:weightSum="2"
         android:padding="5dip">
 
-        <EditText
-            android:id="@+id/desired_value"
+        <FrameLayout
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1.6"
-            android:layout_height="35dp"
-            android:ems="10"
-            android:background="@android:color/white"
-            android:inputType="numberDecimal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textAlignment="center"/>
-
+            android:id="@+id/desired_value_fragment"/>
         <Spinner
             android:id="@+id/desired_unit"
             android:layout_width="0dp"

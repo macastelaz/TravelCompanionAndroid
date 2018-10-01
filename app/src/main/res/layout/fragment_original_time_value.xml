@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="2">
+    <EditText
+        android:id="@+id/original_time_value_hour"
+        android:hint="@string/time_hour_hint"
+        android:layout_width="0dp"
+        android:layout_weight="0.95"
+        android:layout_height="35dip"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_weight="0.1"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textColor="@color/textColor"
+        android:text="@string/semi_colon"/>
+    <EditText
+        android:id="@+id/original_time_value_minute"
+        android:hint="@string/time_minute_hint"
+        android:layout_width="0dp"
+        android:layout_weight="0.95"
+        android:layout_height="35dip"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textAlignment="center"/>
+</LinearLayout>

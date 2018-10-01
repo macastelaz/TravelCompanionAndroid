@@ -77,6 +77,7 @@
     <string name="distance">Distance</string>
     <string name="speed">Speed</string>
     <string name="temperature">Temperature</string>
+    <string name="time">Time</string>
     <string name="USD">USD</string>
     <string name="CAD">CAD</string>
     <string name="MXN">MXN</string>
@@ -90,6 +91,12 @@
     <string name="NM">NM</string>
     <string name="C">C</string>
     <string name="F">F</string>
+    <string name="PT">PT</string>
+    <string name="MT">MT</string>
+    <string name="CT">CT</string>
+    <string name="ET">ET</string>
+    <string name="AKT">AKT</string>
+    <string name="HT">HT</string>
 
     <string name="currency_update_message">*Currency conversion rates refresh every hour with a network connection.</string>
 
@@ -98,6 +105,7 @@
         <item>@string/distance</item>
         <item>@string/speed</item>
         <item>@string/temperature</item>
+        <item>@string/time</item>
     </string-array>
     <string-array name="supported_currencies">
         <item>@string/USD</item>
@@ -119,6 +127,14 @@
     <string-array name="supported_temperatures">
         <item>@string/C</item>
         <item>@string/F</item>
+    </string-array>
+    <string-array name="supported_timezones">
+        <item>@string/PT</item>
+        <item>@string/MT</item>
+        <item>@string/CT</item>
+        <item>@string/ET</item>
+        <item>@string/AKT</item>
+        <item>@string/HT</item>
     </string-array>
 
     <string name="hotel">Hotel</string>
@@ -279,4 +295,13 @@
         <item>Rating Asc.</item>
         <item>Rating Desc.</item>
     </string-array>
+
+    <string name="single_value_original_hint">Original Value</string>
+    <string name="single_value_desired_hint">Desired Value</string>
+    <string name="time_hour_hint">Hour</string>
+    <string name="time_minute_hint">Minute</string>
+    <string name="semi_colon">:</string>
+    <string name="max_hours">23</string>
+    <string name="max_minutes">59</string>
+
 </resources>

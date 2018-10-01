@@ -1,47 +1,41 @@
 package com.castelcode.cruisecompanion.tile_activities;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Cache;
-import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.castelcode.cruisecompanion.R;
+import com.castelcode.cruisecompanion.conversions.DesiredSingleValueFragment;
+import com.castelcode.cruisecompanion.conversions.DesiredTimeValueFragment;
+import com.castelcode.cruisecompanion.conversions.OriginalSingleValueFragment;
+import com.castelcode.cruisecompanion.conversions.OriginalTimeValueFragment;
 import com.castelcode.cruisecompanion.converters.Converter;
 import com.castelcode.cruisecompanion.converters.CurrencyConverter;
 import com.castelcode.cruisecompanion.converters.DistanceConverter;
 import com.castelcode.cruisecompanion.converters.SpeedConverter;
 import com.castelcode.cruisecompanion.converters.TemperatureConverter;
-import com.castelcode.cruisecompanion.utils.ConversionConstants;
+import com.castelcode.cruisecompanion.converters.TimeConverter;
+import com.castelcode.cruisecompanion.converters.TimeWrapper;
 import com.castelcode.cruisecompanion.utils.JsonObjectRequestFactory;
 import com.castelcode.cruisecompanion.utils.RequestQueueSingleton;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
+import java.lang.reflect.Array;
 import java.util.Locale;
-import java.util.Map;
+import java.util.Objects;
 
 public class UnitConverter extends AppCompatActivity implements View.OnClickListener, TextWatcher,
         AdapterView.OnItemSelectedListener{
@@ -51,7 +45,11 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
     private Spinner desiredUnit;
 
     private EditText originalValue;
+    private EditText originalValueHour;
+    private EditText originalValueMinute;
     private EditText desiredValue;
+    private EditText desiredValueHour;
+    private EditText desiredValueMinute;
 
     private Button swapButton;
 
@@ -78,7 +76,7 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
                 .addToRequestQueue(jsonObjectRequest);
         setContentView(R.layout.activity_unit_converter);
 
-        conversionType = (Spinner) findViewById(R.id.conversion_type);
+        conversionType = findViewById(R.id.conversion_type);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> conversionAdapter = ArrayAdapter.createFromResource(this,
                 R.array.supported_conversions, R.layout.conversion_spinner);
@@ -87,12 +85,12 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
         // Apply the adapter to the spinner
         conversionType.setAdapter(conversionAdapter);
         conversionType.setOnItemSelectedListener(this);
-
-        originalUnit = (Spinner) findViewById(R.id.original_unit);
+        updateFragment();
+        originalUnit = findViewById(R.id.original_unit);
         originalUnitAdapter = ArrayAdapter.createFromResource(this,
                 R.array.supported_currencies, R.layout.conversion_spinner);
         
-        desiredUnit = (Spinner) findViewById(R.id.desired_unit);
+        desiredUnit = findViewById(R.id.desired_unit);
         desiredUnitAdapter = ArrayAdapter.createFromResource(this,
                 R.array.supported_currencies, R.layout.conversion_spinner);
         originalUnit.setOnItemSelectedListener(this);
@@ -105,16 +103,10 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
 
         desiredUnit.setOnItemSelectedListener(this);
 
-        originalValue = (EditText) findViewById(R.id.original_value);
-        originalValue.addTextChangedListener(this);
-        desiredValue = (EditText) findViewById(R.id.desired_value);
-        desiredValue.addTextChangedListener(this);
-
-        swapButton = (Button) findViewById(R.id.swap_origin_with_destination);
+        swapButton = findViewById(R.id.swap_origin_with_destination);
         swapButton.setOnClickListener(this);
 
-        disclaimer = (TextView) findViewById(R.id.disclaimer);
-        conversionTypeChanged();
+        disclaimer = findViewById(R.id.disclaimer);
     }
 
     private void updateOldPositions(){
@@ -139,7 +131,21 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
             disclaimer.setVisibility(View.INVISIBLE);
         }
     }
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FrameLayout originalValueFrame = findViewById(R.id.original_value_fragment);
+        FrameLayout desiredValueFrame = findViewById(R.id.desired_value_fragment);
+        if (converter instanceof TimeConverter) {
+            maybeSetEditTextValuesForTime();
+        } else {
+            originalValue = originalValueFrame.findViewById(R.id.original_single_value);
+            originalValue.addTextChangedListener(this);
+            desiredValue = desiredValueFrame.findViewById(R.id.desired_single_value);
+            desiredValue.addTextChangedListener(this);
+        }
+        conversionTypeChanged();
+    }
     @Override
     public void onClick(View v) {
         if(v == swapButton){
@@ -153,10 +159,85 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
     }
 
     private void updateConversion(){
-        if(originalValue.getText().toString().equals("") &&
-                desiredValue.getText().toString().equals(""))
-            return;
         Locale defaultLocale = Locale.getDefault();
+        if (converter instanceof TimeConverter) {
+            if (originalValueHour.getText().toString().isEmpty()
+                    && originalValueMinute.getText().toString().isEmpty()
+                    && desiredValueHour.getText().toString().isEmpty()
+                    && desiredValueMinute.getText().toString().isEmpty()) {
+                return;
+            }
+            handleTimeValueConversion(defaultLocale);
+        }
+        else {
+            if(originalValue.getText().toString().isEmpty() &&
+                    desiredValue.getText().toString().isEmpty())
+                return;
+            handleSingleValueConversion(defaultLocale);
+        }
+    }
+
+    private void handleTimeValueConversion(Locale defaultLocale) {
+        if(getCurrentFocus() != null
+                && (getCurrentFocus().equals(originalValueHour)
+                        || getCurrentFocus().equals(originalValueMinute))) {
+            try {
+                ((TimeConverter)converter).setOriginalHour(Integer.parseInt(
+                        originalValueHour.getText().toString()));
+            } catch (NumberFormatException e) {
+                //Original value did not contain valid double.
+                ((TimeConverter)converter).setOriginalHour(0);
+            }
+            try {
+                ((TimeConverter)converter).setOriginalMinute(Integer.parseInt(
+                        originalValueMinute.getText().toString()));
+            } catch (NumberFormatException e) {
+                //Original value did not contain valid double.
+                ((TimeConverter)converter).setOriginalMinute(0);
+            }
+
+            TimeWrapper result = ((TimeConverter)converter).convert(
+                    originalUnit.getSelectedItem().toString(),
+                    desiredUnit.getSelectedItem().toString());
+            desiredValueHour.removeTextChangedListener(this);
+            desiredValueMinute.removeTextChangedListener(this);
+            desiredValueHour.setText(String.format(defaultLocale, "%02d", result.getHour()));
+            desiredValueMinute.setText(String.format(defaultLocale, "%02d",
+                    result.getMinute()));
+            desiredValueHour.addTextChangedListener(this);
+            desiredValueMinute.addTextChangedListener(this);
+        }
+        else{
+            try {
+                ((TimeConverter)converter).setOriginalHour(Integer.parseInt(
+                        desiredValueHour.getText().toString()));
+            } catch (NumberFormatException e) {
+                //Original value did not contain valid double.
+                ((TimeConverter)converter).setOriginalHour(0);
+            }
+            try {
+                ((TimeConverter)converter).setOriginalMinute(Integer.parseInt(
+                        desiredValueMinute.getText().toString()));
+            } catch (NumberFormatException e) {
+                //Original value did not contain valid double.
+                ((TimeConverter)converter).setOriginalMinute(0);
+            }
+
+            TimeWrapper result = ((TimeConverter)converter).convert(
+                    desiredUnit.getSelectedItem().toString(),
+                    originalUnit.getSelectedItem().toString());
+
+            originalValueHour.removeTextChangedListener(this);
+            originalValueMinute.removeTextChangedListener(this);
+            originalValueHour.setText(String.format(defaultLocale, "%02d", result.getHour()));
+            originalValueMinute.setText(String.format(defaultLocale, "%02d",
+                    result.getMinute()));
+            originalValueHour.addTextChangedListener(this);
+            originalValueMinute.addTextChangedListener(this);
+        }
+    }
+
+    private void handleSingleValueConversion(Locale defaultLocale) {
         if(getCurrentFocus() != null && getCurrentFocus().equals(originalValue)){
             try {
                 converter.setOriginalValue(Double.parseDouble(
@@ -166,7 +247,7 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
                 converter.setOriginalValue(0);
             }
             double result = converter.convert(originalUnit.getSelectedItem().toString(),
-                    desiredUnit.getSelectedItem().toString());
+                    desiredUnit.getSelectedItem().toString()).getResult();
             desiredValue.removeTextChangedListener(this);
             desiredValue.setText(String.format(defaultLocale, "%.2f", result));
             desiredValue.addTextChangedListener(this);
@@ -179,7 +260,7 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
                 converter.setOriginalValue(0);
             }
             double result = converter.convert(desiredUnit.getSelectedItem().toString(),
-                    originalUnit.getSelectedItem().toString());
+                    originalUnit.getSelectedItem().toString()).getResult();
             originalValue.removeTextChangedListener(this);
             originalValue.setText(String.format(defaultLocale, "%.2f", result));
             originalValue.addTextChangedListener(this);
@@ -193,6 +274,28 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
+        EditText currentView = (EditText) getCurrentFocus();
+        if (Objects.requireNonNull(currentView).equals(originalValueHour)
+                || Objects.requireNonNull(currentView).equals(desiredValueHour)) {
+            try {
+                if (Integer.parseInt(s.toString()) > 23) {
+                    Objects.requireNonNull(currentView)
+                            .setText(getResources().getString(R.string.max_hours));
+                }
+            } catch (NumberFormatException ex) {
+                // This is normal, so it's okay!
+            }
+        } else if(Objects.requireNonNull(currentView).equals(originalValueMinute)
+                || Objects.requireNonNull(currentView).equals(originalValueMinute)) {
+            try {
+                if (Integer.parseInt(s.toString()) > 59) {
+                    Objects.requireNonNull(currentView)
+                            .setText(getResources().getString(R.string.max_minutes));
+                }
+            } catch (NumberFormatException ex){
+                // This is normal, so it's okay!
+            }
+        }
         updateConversion();
     }
 
@@ -230,29 +333,23 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
             desiredUnitAdapter = ArrayAdapter.createFromResource(this,
                     R.array.supported_temperatures, R.layout.conversion_spinner);
 
+        } else if (conversionType.getSelectedItem().equals(
+                getResources().getString(R.string.time))) {
+            converter = new TimeConverter(this);
+            originalUnitAdapter = ArrayAdapter.createFromResource(this,
+                    R.array.supported_timezones, R.layout.conversion_spinner);
+            desiredUnitAdapter = ArrayAdapter.createFromResource(this,
+                    R.array.supported_timezones, R.layout.conversion_spinner);
         }
         updateDropdownResources();
         originalUnit.setAdapter(originalUnitAdapter);
         desiredUnit.setAdapter(desiredUnitAdapter);
         updateOldPositions();
-        resetUIElements();
     }
 
     private void updateDropdownResources(){
         originalUnitAdapter.setDropDownViewResource(R.layout.conversion_spinner_dropdown);
         desiredUnitAdapter.setDropDownViewResource(R.layout.conversion_spinner_dropdown);
-    }
-
-    private void resetUIElements(){
-        originalValue.removeTextChangedListener(this);
-        originalValue.setText("");
-        originalValue.addTextChangedListener(this);
-
-        desiredValue.removeTextChangedListener(this);
-        desiredValue.setText("");
-        desiredValue.addTextChangedListener(this);
-
-        changeDisclaimerVisibilityIfNecessary();
     }
 
     private void originalUnitChanged(){
@@ -283,16 +380,75 @@ public class UnitConverter extends AppCompatActivity implements View.OnClickList
         updateConversion();
     }
 
+    private void updateFragment() {
+        String selectedItem = conversionType.getSelectedItem().toString();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        Fragment originalFrag;
+        Fragment desiredFrag;
+        switch (selectedItem) {
+            case "Time":
+                originalFrag = OriginalTimeValueFragment.newInstance();
+                desiredFrag = DesiredTimeValueFragment.newInstance();
+                fragmentTransaction.replace(R.id.original_value_fragment, originalFrag);
+                fragmentTransaction.replace(R.id.desired_value_fragment, desiredFrag);
+                break;
+            default:
+                originalFrag = OriginalSingleValueFragment.newInstance();
+                desiredFrag = DesiredSingleValueFragment.newInstance();
+                fragmentTransaction.replace(R.id.original_value_fragment, originalFrag);
+                fragmentTransaction.replace(R.id.desired_value_fragment, desiredFrag);
+                break;
+        }
+        fragmentTransaction.commit();
+        fm.executePendingTransactions();
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if(parent.equals(conversionType)) {
+            updateFragment();
             conversionTypeChanged();
+            maybeSetEditTextValuesForTime();
+            maybeSetEditTextValuesForGeneric();
         }
         else if(parent.equals(originalUnit)){
             originalUnitChanged();
         }
         else if(parent.equals(desiredUnit)){
             desiredUnitChanged();
+        }
+    }
+
+    private void maybeSetEditTextValuesForGeneric() {
+        if (!(converter instanceof TimeConverter)) {
+            FrameLayout originalValueFrame = findViewById(R.id.original_value_fragment);
+            FrameLayout desiredValueFrame = findViewById(R.id.desired_value_fragment);
+
+            originalValue = originalValueFrame.findViewById(R.id.original_single_value);
+            desiredValue = desiredValueFrame.findViewById(R.id.desired_single_value);
+
+            originalValue.addTextChangedListener(this);
+            desiredValue.addTextChangedListener(this);
+
+            changeDisclaimerVisibilityIfNecessary();
+        }
+    }
+
+    private void maybeSetEditTextValuesForTime() {
+        if (converter instanceof TimeConverter) {
+            FrameLayout originalValueFrame = findViewById(R.id.original_value_fragment);
+            FrameLayout desiredValueFrame = findViewById(R.id.desired_value_fragment);
+
+            originalValueHour = originalValueFrame.findViewById(R.id.original_time_value_hour);
+            originalValueHour.addTextChangedListener(this);
+            originalValueMinute = originalValueFrame.findViewById(R.id.original_time_value_minute);
+            originalValueMinute.addTextChangedListener(this);
+            desiredValueHour = desiredValueFrame.findViewById(R.id.desired_time_value_hour);
+            desiredValueHour.addTextChangedListener(this);
+            desiredValueMinute = desiredValueFrame.findViewById(R.id.desired_time_value_minute);
+            desiredValueMinute.addTextChangedListener(this);
+            changeDisclaimerVisibilityIfNecessary();
         }
     }
 

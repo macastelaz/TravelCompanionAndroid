@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public abstract class Converter {
     protected Context mContext;
-    protected double mOriginalValue;
+    double mOriginalValue;
 
     //assigned and updated in children classes so suppress
     @SuppressWarnings("WeakerAccess")
@@ -28,19 +28,20 @@ public abstract class Converter {
      mOriginalValue = originalValue;
     }
 
-    public double convert(String originalUnit, String desiredUnit){
+    public ResultWrapper convert(String originalUnit, String desiredUnit){
         if(!supportedUnits.contains(originalUnit) ||
                 !supportedUnits.contains(desiredUnit)){
-            return -1;
+            return new ResultWrapper(-1);
         }
         if(mOriginalValue < 0){
-            return -1;
+            return new ResultWrapper(-1);
         }
         try{
-            return possibleConversions.get(originalUnit+desiredUnit).execute(mOriginalValue);
+            return new ResultWrapper(
+                    possibleConversions.get(originalUnit+desiredUnit).execute(mOriginalValue));
         }
         catch (Exception ex){
-            return -1;
+            return new ResultWrapper(-1);
         }
     }
 }
