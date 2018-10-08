@@ -3,6 +3,8 @@ package com.castelcode.cruisecompanion.trip_checklists;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.castelcode.cruisecompanion.TripChecklistProtos;
+
 import java.io.Serializable;
 
 public class ChecklistItem implements Parcelable, Serializable {
@@ -33,6 +35,13 @@ public class ChecklistItem implements Parcelable, Serializable {
         checkedState = false;
         rating = 0;
         originalPosition = position;
+    }
+
+    public ChecklistItem(TripChecklistProtos.ChecklistItem itemIn) {
+        this.itemTitle = itemIn.getTitle();
+        this.checkedState = itemIn.getChecked();
+        this.rating = itemIn.getRating();
+        this.originalPosition = itemIn.getOriginalPosition();
     }
 
     public void toggleCheckedState() {

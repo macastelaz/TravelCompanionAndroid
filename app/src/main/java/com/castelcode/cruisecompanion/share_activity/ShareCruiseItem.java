@@ -23,7 +23,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.castelcode.cruisecompanion.R;
 import com.castelcode.cruisecompanion.adapters.BluetoothDevicesAdapter;
 import com.castelcode.cruisecompanion.bluetooth.BluetoothShareService;
@@ -32,11 +31,6 @@ import com.castelcode.cruisecompanion.tile_activities.TripAgenda;
 import com.castelcode.cruisecompanion.tile_activities.TripChecklists;
 import com.castelcode.cruisecompanion.tile_activities.TripInformation;
 import com.castelcode.cruisecompanion.tile_activities.TripLog;
-import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.BusInfo;
-import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.CruiseInfo;
-import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.FlightInfo;
-import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.HotelInfo;
-import com.castelcode.cruisecompanion.trip_info_add_activity.info_items.Info;
 import com.castelcode.cruisecompanion.utils.DeviceItem;
 import com.castelcode.cruisecompanion.utils.DeviceUuidFactory;
 import com.castelcode.cruisecompanion.utils.TripInfoConstants;
@@ -45,7 +39,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -161,6 +154,11 @@ public class ShareCruiseItem extends AppCompatActivity implements ListView.OnIte
                         }
                     } else if (entry.getKey().equals("tripAgendaConnection")
                             && type.equals(SupportedShareItemTypes.TRIP_AGENDA)) {
+                        if(it.hasNext()) {
+                            entry = (Map.Entry<String, Boolean>) it.next();
+                        }
+                    } else if (entry.getKey().equals("tripChecklistConnection")
+                            && type.equals(SupportedShareItemTypes.TRIP_CHECKLISTS)) {
                         if(it.hasNext()) {
                             entry = (Map.Entry<String, Boolean>) it.next();
                         }
@@ -491,6 +489,7 @@ public class ShareCruiseItem extends AppCompatActivity implements ListView.OnIte
                     connectionKey = "tripAgendaConnection";
                     break;
                 case TRIP_CHECKLISTS:
+                    connectionKey = "tripChecklistConnection";
                     break;
                 case TRIP_INFO:
                     connectionKey = TripInfoConstants.CONNECTION_KEY;
@@ -648,7 +647,6 @@ public class ShareCruiseItem extends AppCompatActivity implements ListView.OnIte
         String emailMessage = "";
         switch(type) {
             case TRIP_LOG:
-
                 break;
             case TRIP_AGENDA:
                     emailMessage = ShareTripAgendaInfoItem.getHtmlMessageForEmail(positionOfItemToShare);
@@ -657,6 +655,7 @@ public class ShareCruiseItem extends AppCompatActivity implements ListView.OnIte
                 emailMessage = ShareTripInfoItem.getHtmlMessageForEmail(positionOfItemToShare);
                 break;
             case TRIP_CHECKLISTS:
+                emailMessage = ShareTripChecklist.getHtmlMessageForEmail(positionOfItemToShare);
                 break;
         }
         return emailMessage;

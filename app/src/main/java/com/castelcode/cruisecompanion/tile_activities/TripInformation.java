@@ -297,6 +297,7 @@ public class TripInformation extends AppCompatActivity implements View.OnClickLi
         super.onPause();
         ref.child(TripInfoConstants.USER_PATH).child(Build.MODEL).removeValue();
     }
+
     private void setupAndroidToIOS() {
         ref = database.getReference();
         Map<String, Boolean> selfEntry = new HashMap<>();
