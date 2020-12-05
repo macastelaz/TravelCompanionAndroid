@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/black"
-    tools:context="com.castelcode.cruisecompanion.trip_info_add_activity.AddTripInfoItem"
+    tools:context="com.castelcode.travelcompanion.trip_info_add_activity.AddTripInfoItem"
     android:weightSum="2"
     android:focusableInTouchMode="true"
     android:descendantFocusability="beforeDescendants">

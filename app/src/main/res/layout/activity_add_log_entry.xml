@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.castelcode.cruisecompanion.log_entry_add_activity.AddLogEntry"
+    tools:context="com.castelcode.travelcompanion.log_entry_add_activity.AddLogEntry"
     android:background="@android:color/black"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="3"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="50dp"
+        android:weightSum="3">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -32,27 +35,38 @@
                 android:layout_weight="1"
                 android:text="Select a time" />
         </LinearLayout>
+
         <EditText
             android:id="@+id/edit_log_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="10dp"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
             android:background="@color/textColor"
             android:ems="10"
             android:gravity="top|start"
             android:hint="@string/trip_log_hint"
             android:inputType="textMultiLine|textCapSentences" />
 
-        <ImageButton
-            android:id="@+id/image_button"
-            android:layout_width="194dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_margin="10dp"
-            android:layout_weight="0.75"
-            android:contentDescription="@string/log_entry_image_description"
-            app:srcCompat="@android:drawable/ic_menu_camera" />
+        <HorizontalScrollView
+            android:id="@+id/image_container_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.25">
+            <LinearLayout
+                android:id="@+id/image_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/image_button"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:contentDescription="@string/log_entry_image_description"
+                    app:srcCompat="@android:drawable/ic_menu_camera" />
+            </LinearLayout>
+        </HorizontalScrollView>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

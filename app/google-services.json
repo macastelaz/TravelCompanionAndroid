@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:758871610845:android:b323cab1de1c3204",
         "android_client_info": {
-          "package_name": "com.castelcode.cruisecompanion"
+          "package_name": "com.castelcode.travelcompanion"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "758871610845-u5l341iqinbapv6a60gfu8seh44dkj4d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.castelcode.cruisecompanion",
+            "package_name": "com.castelcode.travelcompanion",
             "certificate_hash": "07fdce95096b8cc60e872aad71fc604bec581661"
           }
         },
@@ -43,7 +43,7 @@
               "client_id": "758871610845-aa5qf9cgpc8dp4ci2q3rvl5kohq036b4.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.castelcode.CruiseCompanion"
+                "bundle_id": "com.castelcode.travelcompanion"
               }
             },
             {

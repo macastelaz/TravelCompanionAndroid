@@ -1,2 +1,2 @@
-# CruiseCompanion
+# travelcompanion
 

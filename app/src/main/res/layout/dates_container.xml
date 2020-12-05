@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.castelcode.cruisecompanion.agenda_entry.DatesContainer"
+    tools:context="com.castelcode.travelcompanion.agenda_entry.DatesContainer"
     android:orientation="vertical"
     android:layout_marginLeft="10dip"
     android:layout_marginStart="10dip"

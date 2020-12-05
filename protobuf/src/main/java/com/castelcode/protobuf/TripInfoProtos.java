@@ -16,39 +16,39 @@ public final class TripInfoProtos {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface SharedTripInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:cruisecompanion.SharedTripInfo)
+      // @@protoc_insertion_point(interface_extends:travelcompanion.SharedTripInfo)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     java.util.List<com.castelcode.protobuf.TripInfoProtos.TripInfo>
         getSharedTripInformationList();
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.TripInfo getSharedTripInformation(int index);
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     int getSharedTripInformationCount();
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     java.util.List<? extends com.castelcode.protobuf.TripInfoProtos.TripInfoOrBuilder>
         getSharedTripInformationOrBuilderList();
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.TripInfoOrBuilder getSharedTripInformationOrBuilder(
         int index);
   }
   /**
-   * Protobuf type {@code cruisecompanion.SharedTripInfo}
+   * Protobuf type {@code travelcompanion.SharedTripInfo}
    */
   public  static final class SharedTripInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:cruisecompanion.SharedTripInfo)
+      // @@protoc_insertion_point(message_implements:travelcompanion.SharedTripInfo)
       SharedTripInfoOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use SharedTripInfo.newBuilder() to construct.
@@ -116,13 +116,13 @@ public final class TripInfoProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_SharedTripInfo_descriptor;
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_SharedTripInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_SharedTripInfo_fieldAccessorTable
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_SharedTripInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.castelcode.protobuf.TripInfoProtos.SharedTripInfo.class, com.castelcode.protobuf.TripInfoProtos.SharedTripInfo.Builder.class);
     }
@@ -130,32 +130,32 @@ public final class TripInfoProtos {
     public static final int SHARED_TRIP_INFORMATION_FIELD_NUMBER = 1;
     private java.util.List<com.castelcode.protobuf.TripInfoProtos.TripInfo> sharedTripInformation_;
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     public java.util.List<com.castelcode.protobuf.TripInfoProtos.TripInfo> getSharedTripInformationList() {
       return sharedTripInformation_;
     }
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     public java.util.List<? extends com.castelcode.protobuf.TripInfoProtos.TripInfoOrBuilder>
         getSharedTripInformationOrBuilderList() {
       return sharedTripInformation_;
     }
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     public int getSharedTripInformationCount() {
       return sharedTripInformation_.size();
     }
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.TripInfo getSharedTripInformation(int index) {
       return sharedTripInformation_.get(index);
     }
     /**
-     * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+     * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.TripInfoOrBuilder getSharedTripInformationOrBuilder(
         int index) {
@@ -321,21 +321,21 @@ public final class TripInfoProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code cruisecompanion.SharedTripInfo}
+     * Protobuf type {@code travelcompanion.SharedTripInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:cruisecompanion.SharedTripInfo)
+        // @@protoc_insertion_point(builder_implements:travelcompanion.SharedTripInfo)
         com.castelcode.protobuf.TripInfoProtos.SharedTripInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_SharedTripInfo_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_SharedTripInfo_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_SharedTripInfo_fieldAccessorTable
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_SharedTripInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.castelcode.protobuf.TripInfoProtos.SharedTripInfo.class, com.castelcode.protobuf.TripInfoProtos.SharedTripInfo.Builder.class);
       }
@@ -371,7 +371,7 @@ public final class TripInfoProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_SharedTripInfo_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_SharedTripInfo_descriptor;
       }
 
       @java.lang.Override
@@ -518,7 +518,7 @@ public final class TripInfoProtos {
           com.castelcode.protobuf.TripInfoProtos.TripInfo, com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder, com.castelcode.protobuf.TripInfoProtos.TripInfoOrBuilder> sharedTripInformationBuilder_;
 
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public java.util.List<com.castelcode.protobuf.TripInfoProtos.TripInfo> getSharedTripInformationList() {
         if (sharedTripInformationBuilder_ == null) {
@@ -528,7 +528,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public int getSharedTripInformationCount() {
         if (sharedTripInformationBuilder_ == null) {
@@ -538,7 +538,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.TripInfo getSharedTripInformation(int index) {
         if (sharedTripInformationBuilder_ == null) {
@@ -548,7 +548,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder setSharedTripInformation(
           int index, com.castelcode.protobuf.TripInfoProtos.TripInfo value) {
@@ -565,7 +565,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder setSharedTripInformation(
           int index, com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder builderForValue) {
@@ -579,7 +579,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder addSharedTripInformation(com.castelcode.protobuf.TripInfoProtos.TripInfo value) {
         if (sharedTripInformationBuilder_ == null) {
@@ -595,7 +595,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder addSharedTripInformation(
           int index, com.castelcode.protobuf.TripInfoProtos.TripInfo value) {
@@ -612,7 +612,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder addSharedTripInformation(
           com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder builderForValue) {
@@ -626,7 +626,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder addSharedTripInformation(
           int index, com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder builderForValue) {
@@ -640,7 +640,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder addAllSharedTripInformation(
           java.lang.Iterable<? extends com.castelcode.protobuf.TripInfoProtos.TripInfo> values) {
@@ -655,7 +655,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder clearSharedTripInformation() {
         if (sharedTripInformationBuilder_ == null) {
@@ -668,7 +668,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public Builder removeSharedTripInformation(int index) {
         if (sharedTripInformationBuilder_ == null) {
@@ -681,14 +681,14 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder getSharedTripInformationBuilder(
           int index) {
         return getSharedTripInformationFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.TripInfoOrBuilder getSharedTripInformationOrBuilder(
           int index) {
@@ -698,7 +698,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public java.util.List<? extends com.castelcode.protobuf.TripInfoProtos.TripInfoOrBuilder> 
            getSharedTripInformationOrBuilderList() {
@@ -709,14 +709,14 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder addSharedTripInformationBuilder() {
         return getSharedTripInformationFieldBuilder().addBuilder(
             com.castelcode.protobuf.TripInfoProtos.TripInfo.getDefaultInstance());
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder addSharedTripInformationBuilder(
           int index) {
@@ -724,7 +724,7 @@ public final class TripInfoProtos {
             index, com.castelcode.protobuf.TripInfoProtos.TripInfo.getDefaultInstance());
       }
       /**
-       * <code>repeated .cruisecompanion.TripInfo shared_trip_information = 1;</code>
+       * <code>repeated .travelcompanion.TripInfo shared_trip_information = 1;</code>
        */
       public java.util.List<com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder> 
            getSharedTripInformationBuilderList() {
@@ -757,10 +757,10 @@ public final class TripInfoProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:cruisecompanion.SharedTripInfo)
+      // @@protoc_insertion_point(builder_scope:travelcompanion.SharedTripInfo)
     }
 
-    // @@protoc_insertion_point(class_scope:cruisecompanion.SharedTripInfo)
+    // @@protoc_insertion_point(class_scope:travelcompanion.SharedTripInfo)
     private static final com.castelcode.protobuf.TripInfoProtos.SharedTripInfo DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.castelcode.protobuf.TripInfoProtos.SharedTripInfo();
@@ -798,69 +798,69 @@ public final class TripInfoProtos {
   }
 
   public interface TripInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:cruisecompanion.TripInfo)
+      // @@protoc_insertion_point(interface_extends:travelcompanion.TripInfo)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+     * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
      */
     boolean hasHotelInfo();
     /**
-     * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+     * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.HotelInformation getHotelInfo();
     /**
-     * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+     * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.HotelInformationOrBuilder getHotelInfoOrBuilder();
 
     /**
-     * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+     * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
      */
     boolean hasFlightInfo();
     /**
-     * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+     * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.FlightInformation getFlightInfo();
     /**
-     * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+     * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.FlightInformationOrBuilder getFlightInfoOrBuilder();
 
     /**
-     * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+     * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
      */
     boolean hasCruiseInfo();
     /**
-     * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+     * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.CruiseInformation getCruiseInfo();
     /**
-     * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+     * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.CruiseInformationOrBuilder getCruiseInfoOrBuilder();
 
     /**
-     * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+     * <code>.travelcompanion.BusInformation bus_info = 4;</code>
      */
     boolean hasBusInfo();
     /**
-     * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+     * <code>.travelcompanion.BusInformation bus_info = 4;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.BusInformation getBusInfo();
     /**
-     * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+     * <code>.travelcompanion.BusInformation bus_info = 4;</code>
      */
     com.castelcode.protobuf.TripInfoProtos.BusInformationOrBuilder getBusInfoOrBuilder();
 
     public com.castelcode.protobuf.TripInfoProtos.TripInfo.InfoCase getInfoCase();
   }
   /**
-   * Protobuf type {@code cruisecompanion.TripInfo}
+   * Protobuf type {@code travelcompanion.TripInfo}
    */
   public  static final class TripInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:cruisecompanion.TripInfo)
+      // @@protoc_insertion_point(message_implements:travelcompanion.TripInfo)
       TripInfoOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use TripInfo.newBuilder() to construct.
@@ -971,13 +971,13 @@ public final class TripInfoProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_TripInfo_descriptor;
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_TripInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_TripInfo_fieldAccessorTable
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_TripInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.castelcode.protobuf.TripInfoProtos.TripInfo.class, com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder.class);
     }
@@ -1026,13 +1026,13 @@ public final class TripInfoProtos {
 
     public static final int HOTEL_INFO_FIELD_NUMBER = 1;
     /**
-     * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+     * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
      */
     public boolean hasHotelInfo() {
       return infoCase_ == 1;
     }
     /**
-     * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+     * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.HotelInformation getHotelInfo() {
       if (infoCase_ == 1) {
@@ -1041,7 +1041,7 @@ public final class TripInfoProtos {
       return com.castelcode.protobuf.TripInfoProtos.HotelInformation.getDefaultInstance();
     }
     /**
-     * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+     * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.HotelInformationOrBuilder getHotelInfoOrBuilder() {
       if (infoCase_ == 1) {
@@ -1052,13 +1052,13 @@ public final class TripInfoProtos {
 
     public static final int FLIGHT_INFO_FIELD_NUMBER = 2;
     /**
-     * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+     * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
      */
     public boolean hasFlightInfo() {
       return infoCase_ == 2;
     }
     /**
-     * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+     * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.FlightInformation getFlightInfo() {
       if (infoCase_ == 2) {
@@ -1067,7 +1067,7 @@ public final class TripInfoProtos {
       return com.castelcode.protobuf.TripInfoProtos.FlightInformation.getDefaultInstance();
     }
     /**
-     * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+     * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.FlightInformationOrBuilder getFlightInfoOrBuilder() {
       if (infoCase_ == 2) {
@@ -1078,13 +1078,13 @@ public final class TripInfoProtos {
 
     public static final int CRUISE_INFO_FIELD_NUMBER = 3;
     /**
-     * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+     * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
      */
     public boolean hasCruiseInfo() {
       return infoCase_ == 3;
     }
     /**
-     * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+     * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.CruiseInformation getCruiseInfo() {
       if (infoCase_ == 3) {
@@ -1093,7 +1093,7 @@ public final class TripInfoProtos {
       return com.castelcode.protobuf.TripInfoProtos.CruiseInformation.getDefaultInstance();
     }
     /**
-     * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+     * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.CruiseInformationOrBuilder getCruiseInfoOrBuilder() {
       if (infoCase_ == 3) {
@@ -1104,13 +1104,13 @@ public final class TripInfoProtos {
 
     public static final int BUS_INFO_FIELD_NUMBER = 4;
     /**
-     * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+     * <code>.travelcompanion.BusInformation bus_info = 4;</code>
      */
     public boolean hasBusInfo() {
       return infoCase_ == 4;
     }
     /**
-     * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+     * <code>.travelcompanion.BusInformation bus_info = 4;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.BusInformation getBusInfo() {
       if (infoCase_ == 4) {
@@ -1119,7 +1119,7 @@ public final class TripInfoProtos {
       return com.castelcode.protobuf.TripInfoProtos.BusInformation.getDefaultInstance();
     }
     /**
-     * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+     * <code>.travelcompanion.BusInformation bus_info = 4;</code>
      */
     public com.castelcode.protobuf.TripInfoProtos.BusInformationOrBuilder getBusInfoOrBuilder() {
       if (infoCase_ == 4) {
@@ -1345,21 +1345,21 @@ public final class TripInfoProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code cruisecompanion.TripInfo}
+     * Protobuf type {@code travelcompanion.TripInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:cruisecompanion.TripInfo)
+        // @@protoc_insertion_point(builder_implements:travelcompanion.TripInfo)
         com.castelcode.protobuf.TripInfoProtos.TripInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_TripInfo_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_TripInfo_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_TripInfo_fieldAccessorTable
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_TripInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.castelcode.protobuf.TripInfoProtos.TripInfo.class, com.castelcode.protobuf.TripInfoProtos.TripInfo.Builder.class);
       }
@@ -1390,7 +1390,7 @@ public final class TripInfoProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_TripInfo_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_TripInfo_descriptor;
       }
 
       @java.lang.Override
@@ -1555,13 +1555,13 @@ public final class TripInfoProtos {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.castelcode.protobuf.TripInfoProtos.HotelInformation, com.castelcode.protobuf.TripInfoProtos.HotelInformation.Builder, com.castelcode.protobuf.TripInfoProtos.HotelInformationOrBuilder> hotelInfoBuilder_;
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       public boolean hasHotelInfo() {
         return infoCase_ == 1;
       }
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.HotelInformation getHotelInfo() {
         if (hotelInfoBuilder_ == null) {
@@ -1577,7 +1577,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       public Builder setHotelInfo(com.castelcode.protobuf.TripInfoProtos.HotelInformation value) {
         if (hotelInfoBuilder_ == null) {
@@ -1593,7 +1593,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       public Builder setHotelInfo(
           com.castelcode.protobuf.TripInfoProtos.HotelInformation.Builder builderForValue) {
@@ -1607,7 +1607,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       public Builder mergeHotelInfo(com.castelcode.protobuf.TripInfoProtos.HotelInformation value) {
         if (hotelInfoBuilder_ == null) {
@@ -1629,7 +1629,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       public Builder clearHotelInfo() {
         if (hotelInfoBuilder_ == null) {
@@ -1648,13 +1648,13 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.HotelInformation.Builder getHotelInfoBuilder() {
         return getHotelInfoFieldBuilder().getBuilder();
       }
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.HotelInformationOrBuilder getHotelInfoOrBuilder() {
         if ((infoCase_ == 1) && (hotelInfoBuilder_ != null)) {
@@ -1667,7 +1667,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>.cruisecompanion.HotelInformation hotel_info = 1;</code>
+       * <code>.travelcompanion.HotelInformation hotel_info = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.castelcode.protobuf.TripInfoProtos.HotelInformation, com.castelcode.protobuf.TripInfoProtos.HotelInformation.Builder, com.castelcode.protobuf.TripInfoProtos.HotelInformationOrBuilder> 
@@ -1691,13 +1691,13 @@ public final class TripInfoProtos {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.castelcode.protobuf.TripInfoProtos.FlightInformation, com.castelcode.protobuf.TripInfoProtos.FlightInformation.Builder, com.castelcode.protobuf.TripInfoProtos.FlightInformationOrBuilder> flightInfoBuilder_;
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       public boolean hasFlightInfo() {
         return infoCase_ == 2;
       }
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.FlightInformation getFlightInfo() {
         if (flightInfoBuilder_ == null) {
@@ -1713,7 +1713,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       public Builder setFlightInfo(com.castelcode.protobuf.TripInfoProtos.FlightInformation value) {
         if (flightInfoBuilder_ == null) {
@@ -1729,7 +1729,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       public Builder setFlightInfo(
           com.castelcode.protobuf.TripInfoProtos.FlightInformation.Builder builderForValue) {
@@ -1743,7 +1743,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       public Builder mergeFlightInfo(com.castelcode.protobuf.TripInfoProtos.FlightInformation value) {
         if (flightInfoBuilder_ == null) {
@@ -1765,7 +1765,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       public Builder clearFlightInfo() {
         if (flightInfoBuilder_ == null) {
@@ -1784,13 +1784,13 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.FlightInformation.Builder getFlightInfoBuilder() {
         return getFlightInfoFieldBuilder().getBuilder();
       }
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.FlightInformationOrBuilder getFlightInfoOrBuilder() {
         if ((infoCase_ == 2) && (flightInfoBuilder_ != null)) {
@@ -1803,7 +1803,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>.cruisecompanion.FlightInformation flight_info = 2;</code>
+       * <code>.travelcompanion.FlightInformation flight_info = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.castelcode.protobuf.TripInfoProtos.FlightInformation, com.castelcode.protobuf.TripInfoProtos.FlightInformation.Builder, com.castelcode.protobuf.TripInfoProtos.FlightInformationOrBuilder> 
@@ -1827,13 +1827,13 @@ public final class TripInfoProtos {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.castelcode.protobuf.TripInfoProtos.CruiseInformation, com.castelcode.protobuf.TripInfoProtos.CruiseInformation.Builder, com.castelcode.protobuf.TripInfoProtos.CruiseInformationOrBuilder> cruiseInfoBuilder_;
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       public boolean hasCruiseInfo() {
         return infoCase_ == 3;
       }
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.CruiseInformation getCruiseInfo() {
         if (cruiseInfoBuilder_ == null) {
@@ -1849,7 +1849,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       public Builder setCruiseInfo(com.castelcode.protobuf.TripInfoProtos.CruiseInformation value) {
         if (cruiseInfoBuilder_ == null) {
@@ -1865,7 +1865,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       public Builder setCruiseInfo(
           com.castelcode.protobuf.TripInfoProtos.CruiseInformation.Builder builderForValue) {
@@ -1879,7 +1879,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       public Builder mergeCruiseInfo(com.castelcode.protobuf.TripInfoProtos.CruiseInformation value) {
         if (cruiseInfoBuilder_ == null) {
@@ -1901,7 +1901,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       public Builder clearCruiseInfo() {
         if (cruiseInfoBuilder_ == null) {
@@ -1920,13 +1920,13 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.CruiseInformation.Builder getCruiseInfoBuilder() {
         return getCruiseInfoFieldBuilder().getBuilder();
       }
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.CruiseInformationOrBuilder getCruiseInfoOrBuilder() {
         if ((infoCase_ == 3) && (cruiseInfoBuilder_ != null)) {
@@ -1939,7 +1939,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>.cruisecompanion.CruiseInformation cruise_info = 3;</code>
+       * <code>.travelcompanion.CruiseInformation cruise_info = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.castelcode.protobuf.TripInfoProtos.CruiseInformation, com.castelcode.protobuf.TripInfoProtos.CruiseInformation.Builder, com.castelcode.protobuf.TripInfoProtos.CruiseInformationOrBuilder> 
@@ -1963,13 +1963,13 @@ public final class TripInfoProtos {
       private com.google.protobuf.SingleFieldBuilderV3<
           com.castelcode.protobuf.TripInfoProtos.BusInformation, com.castelcode.protobuf.TripInfoProtos.BusInformation.Builder, com.castelcode.protobuf.TripInfoProtos.BusInformationOrBuilder> busInfoBuilder_;
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       public boolean hasBusInfo() {
         return infoCase_ == 4;
       }
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.BusInformation getBusInfo() {
         if (busInfoBuilder_ == null) {
@@ -1985,7 +1985,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       public Builder setBusInfo(com.castelcode.protobuf.TripInfoProtos.BusInformation value) {
         if (busInfoBuilder_ == null) {
@@ -2001,7 +2001,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       public Builder setBusInfo(
           com.castelcode.protobuf.TripInfoProtos.BusInformation.Builder builderForValue) {
@@ -2015,7 +2015,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       public Builder mergeBusInfo(com.castelcode.protobuf.TripInfoProtos.BusInformation value) {
         if (busInfoBuilder_ == null) {
@@ -2037,7 +2037,7 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       public Builder clearBusInfo() {
         if (busInfoBuilder_ == null) {
@@ -2056,13 +2056,13 @@ public final class TripInfoProtos {
         return this;
       }
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.BusInformation.Builder getBusInfoBuilder() {
         return getBusInfoFieldBuilder().getBuilder();
       }
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       public com.castelcode.protobuf.TripInfoProtos.BusInformationOrBuilder getBusInfoOrBuilder() {
         if ((infoCase_ == 4) && (busInfoBuilder_ != null)) {
@@ -2075,7 +2075,7 @@ public final class TripInfoProtos {
         }
       }
       /**
-       * <code>.cruisecompanion.BusInformation bus_info = 4;</code>
+       * <code>.travelcompanion.BusInformation bus_info = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           com.castelcode.protobuf.TripInfoProtos.BusInformation, com.castelcode.protobuf.TripInfoProtos.BusInformation.Builder, com.castelcode.protobuf.TripInfoProtos.BusInformationOrBuilder> 
@@ -2108,10 +2108,10 @@ public final class TripInfoProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:cruisecompanion.TripInfo)
+      // @@protoc_insertion_point(builder_scope:travelcompanion.TripInfo)
     }
 
-    // @@protoc_insertion_point(class_scope:cruisecompanion.TripInfo)
+    // @@protoc_insertion_point(class_scope:travelcompanion.TripInfo)
     private static final com.castelcode.protobuf.TripInfoProtos.TripInfo DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.castelcode.protobuf.TripInfoProtos.TripInfo();
@@ -2149,7 +2149,7 @@ public final class TripInfoProtos {
   }
 
   public interface HotelInformationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:cruisecompanion.HotelInformation)
+      // @@protoc_insertion_point(interface_extends:travelcompanion.HotelInformation)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -2253,11 +2253,11 @@ public final class TripInfoProtos {
         getCheckOutTimeBytes();
   }
   /**
-   * Protobuf type {@code cruisecompanion.HotelInformation}
+   * Protobuf type {@code travelcompanion.HotelInformation}
    */
   public  static final class HotelInformation extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:cruisecompanion.HotelInformation)
+      // @@protoc_insertion_point(message_implements:travelcompanion.HotelInformation)
       HotelInformationOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use HotelInformation.newBuilder() to construct.
@@ -2382,13 +2382,13 @@ public final class TripInfoProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_HotelInformation_descriptor;
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_HotelInformation_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_HotelInformation_fieldAccessorTable
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_HotelInformation_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.castelcode.protobuf.TripInfoProtos.HotelInformation.class, com.castelcode.protobuf.TripInfoProtos.HotelInformation.Builder.class);
     }
@@ -2979,21 +2979,21 @@ public final class TripInfoProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code cruisecompanion.HotelInformation}
+     * Protobuf type {@code travelcompanion.HotelInformation}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:cruisecompanion.HotelInformation)
+        // @@protoc_insertion_point(builder_implements:travelcompanion.HotelInformation)
         com.castelcode.protobuf.TripInfoProtos.HotelInformationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_HotelInformation_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_HotelInformation_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_HotelInformation_fieldAccessorTable
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_HotelInformation_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.castelcode.protobuf.TripInfoProtos.HotelInformation.class, com.castelcode.protobuf.TripInfoProtos.HotelInformation.Builder.class);
       }
@@ -3042,7 +3042,7 @@ public final class TripInfoProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_HotelInformation_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_HotelInformation_descriptor;
       }
 
       @java.lang.Override
@@ -3891,10 +3891,10 @@ public final class TripInfoProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:cruisecompanion.HotelInformation)
+      // @@protoc_insertion_point(builder_scope:travelcompanion.HotelInformation)
     }
 
-    // @@protoc_insertion_point(class_scope:cruisecompanion.HotelInformation)
+    // @@protoc_insertion_point(class_scope:travelcompanion.HotelInformation)
     private static final com.castelcode.protobuf.TripInfoProtos.HotelInformation DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.castelcode.protobuf.TripInfoProtos.HotelInformation();
@@ -3932,7 +3932,7 @@ public final class TripInfoProtos {
   }
 
   public interface FlightInformationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:cruisecompanion.FlightInformation)
+      // @@protoc_insertion_point(interface_extends:travelcompanion.FlightInformation)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -4036,11 +4036,11 @@ public final class TripInfoProtos {
         getPhoneNumberBytes();
   }
   /**
-   * Protobuf type {@code cruisecompanion.FlightInformation}
+   * Protobuf type {@code travelcompanion.FlightInformation}
    */
   public  static final class FlightInformation extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:cruisecompanion.FlightInformation)
+      // @@protoc_insertion_point(message_implements:travelcompanion.FlightInformation)
       FlightInformationOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use FlightInformation.newBuilder() to construct.
@@ -4165,13 +4165,13 @@ public final class TripInfoProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_FlightInformation_descriptor;
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_FlightInformation_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_FlightInformation_fieldAccessorTable
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_FlightInformation_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.castelcode.protobuf.TripInfoProtos.FlightInformation.class, com.castelcode.protobuf.TripInfoProtos.FlightInformation.Builder.class);
     }
@@ -4762,21 +4762,21 @@ public final class TripInfoProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code cruisecompanion.FlightInformation}
+     * Protobuf type {@code travelcompanion.FlightInformation}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:cruisecompanion.FlightInformation)
+        // @@protoc_insertion_point(builder_implements:travelcompanion.FlightInformation)
         com.castelcode.protobuf.TripInfoProtos.FlightInformationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_FlightInformation_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_FlightInformation_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_FlightInformation_fieldAccessorTable
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_FlightInformation_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.castelcode.protobuf.TripInfoProtos.FlightInformation.class, com.castelcode.protobuf.TripInfoProtos.FlightInformation.Builder.class);
       }
@@ -4825,7 +4825,7 @@ public final class TripInfoProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_FlightInformation_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_FlightInformation_descriptor;
       }
 
       @java.lang.Override
@@ -5674,10 +5674,10 @@ public final class TripInfoProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:cruisecompanion.FlightInformation)
+      // @@protoc_insertion_point(builder_scope:travelcompanion.FlightInformation)
     }
 
-    // @@protoc_insertion_point(class_scope:cruisecompanion.FlightInformation)
+    // @@protoc_insertion_point(class_scope:travelcompanion.FlightInformation)
     private static final com.castelcode.protobuf.TripInfoProtos.FlightInformation DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.castelcode.protobuf.TripInfoProtos.FlightInformation();
@@ -5715,7 +5715,7 @@ public final class TripInfoProtos {
   }
 
   public interface CruiseInformationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:cruisecompanion.CruiseInformation)
+      // @@protoc_insertion_point(interface_extends:travelcompanion.CruiseInformation)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -5789,11 +5789,11 @@ public final class TripInfoProtos {
         getPhoneNumberBytes();
   }
   /**
-   * Protobuf type {@code cruisecompanion.CruiseInformation}
+   * Protobuf type {@code travelcompanion.CruiseInformation}
    */
   public  static final class CruiseInformation extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:cruisecompanion.CruiseInformation)
+      // @@protoc_insertion_point(message_implements:travelcompanion.CruiseInformation)
       CruiseInformationOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use CruiseInformation.newBuilder() to construct.
@@ -5897,13 +5897,13 @@ public final class TripInfoProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_CruiseInformation_descriptor;
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_CruiseInformation_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_CruiseInformation_fieldAccessorTable
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_CruiseInformation_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.castelcode.protobuf.TripInfoProtos.CruiseInformation.class, com.castelcode.protobuf.TripInfoProtos.CruiseInformation.Builder.class);
     }
@@ -6362,21 +6362,21 @@ public final class TripInfoProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code cruisecompanion.CruiseInformation}
+     * Protobuf type {@code travelcompanion.CruiseInformation}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:cruisecompanion.CruiseInformation)
+        // @@protoc_insertion_point(builder_implements:travelcompanion.CruiseInformation)
         com.castelcode.protobuf.TripInfoProtos.CruiseInformationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_CruiseInformation_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_CruiseInformation_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_CruiseInformation_fieldAccessorTable
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_CruiseInformation_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.castelcode.protobuf.TripInfoProtos.CruiseInformation.class, com.castelcode.protobuf.TripInfoProtos.CruiseInformation.Builder.class);
       }
@@ -6419,7 +6419,7 @@ public final class TripInfoProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_CruiseInformation_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_CruiseInformation_descriptor;
       }
 
       @java.lang.Override
@@ -7046,10 +7046,10 @@ public final class TripInfoProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:cruisecompanion.CruiseInformation)
+      // @@protoc_insertion_point(builder_scope:travelcompanion.CruiseInformation)
     }
 
-    // @@protoc_insertion_point(class_scope:cruisecompanion.CruiseInformation)
+    // @@protoc_insertion_point(class_scope:travelcompanion.CruiseInformation)
     private static final com.castelcode.protobuf.TripInfoProtos.CruiseInformation DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.castelcode.protobuf.TripInfoProtos.CruiseInformation();
@@ -7087,7 +7087,7 @@ public final class TripInfoProtos {
   }
 
   public interface BusInformationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:cruisecompanion.BusInformation)
+      // @@protoc_insertion_point(interface_extends:travelcompanion.BusInformation)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -7181,11 +7181,11 @@ public final class TripInfoProtos {
         getPhoneNumberBytes();
   }
   /**
-   * Protobuf type {@code cruisecompanion.BusInformation}
+   * Protobuf type {@code travelcompanion.BusInformation}
    */
   public  static final class BusInformation extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:cruisecompanion.BusInformation)
+      // @@protoc_insertion_point(message_implements:travelcompanion.BusInformation)
       BusInformationOrBuilder {
   private static final long serialVersionUID = 0L;
     // Use BusInformation.newBuilder() to construct.
@@ -7303,13 +7303,13 @@ public final class TripInfoProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_BusInformation_descriptor;
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_BusInformation_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_BusInformation_fieldAccessorTable
+      return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_BusInformation_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.castelcode.protobuf.TripInfoProtos.BusInformation.class, com.castelcode.protobuf.TripInfoProtos.BusInformation.Builder.class);
     }
@@ -7856,21 +7856,21 @@ public final class TripInfoProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code cruisecompanion.BusInformation}
+     * Protobuf type {@code travelcompanion.BusInformation}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:cruisecompanion.BusInformation)
+        // @@protoc_insertion_point(builder_implements:travelcompanion.BusInformation)
         com.castelcode.protobuf.TripInfoProtos.BusInformationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_BusInformation_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_BusInformation_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_BusInformation_fieldAccessorTable
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_BusInformation_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.castelcode.protobuf.TripInfoProtos.BusInformation.class, com.castelcode.protobuf.TripInfoProtos.BusInformation.Builder.class);
       }
@@ -7917,7 +7917,7 @@ public final class TripInfoProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.castelcode.protobuf.TripInfoProtos.internal_static_cruisecompanion_BusInformation_descriptor;
+        return com.castelcode.protobuf.TripInfoProtos.internal_static_travelcompanion_BusInformation_descriptor;
       }
 
       @java.lang.Override
@@ -8692,10 +8692,10 @@ public final class TripInfoProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:cruisecompanion.BusInformation)
+      // @@protoc_insertion_point(builder_scope:travelcompanion.BusInformation)
     }
 
-    // @@protoc_insertion_point(class_scope:cruisecompanion.BusInformation)
+    // @@protoc_insertion_point(class_scope:travelcompanion.BusInformation)
     private static final com.castelcode.protobuf.TripInfoProtos.BusInformation DEFAULT_INSTANCE;
     static {
       DEFAULT_INSTANCE = new com.castelcode.protobuf.TripInfoProtos.BusInformation();
@@ -8733,35 +8733,35 @@ public final class TripInfoProtos {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_cruisecompanion_SharedTripInfo_descriptor;
+    internal_static_travelcompanion_SharedTripInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_cruisecompanion_SharedTripInfo_fieldAccessorTable;
+      internal_static_travelcompanion_SharedTripInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_cruisecompanion_TripInfo_descriptor;
+    internal_static_travelcompanion_TripInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_cruisecompanion_TripInfo_fieldAccessorTable;
+      internal_static_travelcompanion_TripInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_cruisecompanion_HotelInformation_descriptor;
+    internal_static_travelcompanion_HotelInformation_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_cruisecompanion_HotelInformation_fieldAccessorTable;
+      internal_static_travelcompanion_HotelInformation_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_cruisecompanion_FlightInformation_descriptor;
+    internal_static_travelcompanion_FlightInformation_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_cruisecompanion_FlightInformation_fieldAccessorTable;
+      internal_static_travelcompanion_FlightInformation_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_cruisecompanion_CruiseInformation_descriptor;
+    internal_static_travelcompanion_CruiseInformation_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_cruisecompanion_CruiseInformation_fieldAccessorTable;
+      internal_static_travelcompanion_CruiseInformation_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_cruisecompanion_BusInformation_descriptor;
+    internal_static_travelcompanion_BusInformation_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_cruisecompanion_BusInformation_fieldAccessorTable;
+      internal_static_travelcompanion_BusInformation_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -8771,15 +8771,15 @@ public final class TripInfoProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016TripInfo.proto\022\017cruisecompanion\"L\n\016Sha" +
+      "\n\016TripInfo.proto\022\017travelcompanion\"L\n\016Sha" +
       "redTripInfo\022:\n\027shared_trip_information\030\001" +
-      " \003(\0132\031.cruisecompanion.TripInfo\"\366\001\n\010Trip" +
+      " \003(\0132\031.travelcompanion.TripInfo\"\366\001\n\010Trip" +
       "Info\0227\n\nhotel_info\030\001 \001(\0132!.cruisecompani" +
       "on.HotelInformationH\000\0229\n\013flight_info\030\002 \001" +
-      "(\0132\".cruisecompanion.FlightInformationH\000" +
-      "\0229\n\013cruise_info\030\003 \001(\0132\".cruisecompanion." +
+      "(\0132\".travelcompanion.FlightInformationH\000" +
+      "\0229\n\013cruise_info\030\003 \001(\0132\".travelcompanion." +
       "CruiseInformationH\000\0223\n\010bus_info\030\004 \001(\0132\037." +
-      "cruisecompanion.BusInformationH\000B\006\n\004info" +
+      "travelcompanion.BusInformationH\000B\006\n\004info" +
       "\"\337\001\n\020HotelInformation\022\014\n\004name\030\001 \001(\t\022\017\n\007a" +
       "ddress\030\002 \001(\t\022\014\n\004city\030\003 \001(\t\022\r\n\005state\030\004 \001(" +
       "\t\022\033\n\023confrimation_number\030\005 \001(\t\022\024\n\014phone_" +
@@ -8802,7 +8802,7 @@ public final class TripInfoProtos {
       "te\030\005 \001(\t\022\026\n\016departure_time\030\006 \001(\t\022\024\n\014arri" +
       "val_time\030\007 \001(\t\022\033\n\023confirmation_number\030\010 " +
       "\001(\t\022\024\n\014phone_number\030\t \001(\tB0\n\036com.castelc" +
-      "ode.cruisecompanionB\016TripInfoProtosb\006pro" +
+      "ode.travelcompanionB\016TripInfoProtosb\006pro" +
       "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
@@ -8817,41 +8817,41 @@ public final class TripInfoProtos {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_cruisecompanion_SharedTripInfo_descriptor =
+    internal_static_travelcompanion_SharedTripInfo_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_cruisecompanion_SharedTripInfo_fieldAccessorTable = new
+    internal_static_travelcompanion_SharedTripInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_cruisecompanion_SharedTripInfo_descriptor,
+        internal_static_travelcompanion_SharedTripInfo_descriptor,
         new java.lang.String[] { "SharedTripInformation", });
-    internal_static_cruisecompanion_TripInfo_descriptor =
+    internal_static_travelcompanion_TripInfo_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_cruisecompanion_TripInfo_fieldAccessorTable = new
+    internal_static_travelcompanion_TripInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_cruisecompanion_TripInfo_descriptor,
+        internal_static_travelcompanion_TripInfo_descriptor,
         new java.lang.String[] { "HotelInfo", "FlightInfo", "CruiseInfo", "BusInfo", "Info", });
-    internal_static_cruisecompanion_HotelInformation_descriptor =
+    internal_static_travelcompanion_HotelInformation_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_cruisecompanion_HotelInformation_fieldAccessorTable = new
+    internal_static_travelcompanion_HotelInformation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_cruisecompanion_HotelInformation_descriptor,
+        internal_static_travelcompanion_HotelInformation_descriptor,
         new java.lang.String[] { "Name", "Address", "City", "State", "ConfrimationNumber", "PhoneNumber", "CheckInDate", "CheckInTime", "CheckOutDate", "CheckOutTime", });
-    internal_static_cruisecompanion_FlightInformation_descriptor =
+    internal_static_travelcompanion_FlightInformation_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_cruisecompanion_FlightInformation_fieldAccessorTable = new
+    internal_static_travelcompanion_FlightInformation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_cruisecompanion_FlightInformation_descriptor,
+        internal_static_travelcompanion_FlightInformation_descriptor,
         new java.lang.String[] { "Airline", "FlightNumber", "SeatNumber", "Origin", "Destination", "DepartureDate", "DepartureTime", "ArrivalTime", "ConfirmationNumber", "PhoneNumber", });
-    internal_static_cruisecompanion_CruiseInformation_descriptor =
+    internal_static_travelcompanion_CruiseInformation_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_cruisecompanion_CruiseInformation_fieldAccessorTable = new
+    internal_static_travelcompanion_CruiseInformation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_cruisecompanion_CruiseInformation_descriptor,
+        internal_static_travelcompanion_CruiseInformation_descriptor,
         new java.lang.String[] { "CruiseLine", "ShipName", "RoomNumber", "DepartureDate", "DepartureTime", "ConfirmationNumber", "PhoneNumber", });
-    internal_static_cruisecompanion_BusInformation_descriptor =
+    internal_static_travelcompanion_BusInformation_descriptor =
       getDescriptor().getMessageTypes().get(5);
-    internal_static_cruisecompanion_BusInformation_fieldAccessorTable = new
+    internal_static_travelcompanion_BusInformation_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_cruisecompanion_BusInformation_descriptor,
+        internal_static_travelcompanion_BusInformation_descriptor,
         new java.lang.String[] { "BusLine", "SeatNumber", "Origin", "Destination", "DepartureDate", "DepartureTime", "ArrivalTime", "ConfirmationNumber", "PhoneNumber", });
   }
 

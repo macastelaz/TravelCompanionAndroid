@@ -1,5 +1,5 @@
 <resources  xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Cruise Companion</string>
+    <string name="app_name">Travel Companion</string>
     <string name="home_page_title">Home</string>
     <string name="settings_page_title">Settings</string>
     <string name="unit_converter_page_title">Unit Conversion</string>
@@ -16,7 +16,7 @@
     <string name="trip_checklists_page_title">Trip Checklists</string>
     <string name="trip_checklist_edit_page_title">Edit Trip Checklist</string>
 
-    <string name="preference_file_key">com.castelcode.cruisecompanion.PREFERENCE_FILE_KEY</string>
+    <string name="preference_file_key">com.castelcode.travelcompanion.PREFERENCE_FILE_KEY</string>
     <string name="date_key">cruiseDate</string>
     <string name="date_title">Date of Trip</string>
     <string name="date_summary">Please select the day that your trip begins</string>
@@ -39,25 +39,25 @@
     <string name="time_of_trip">Your trip is set to start at: </string>
     <string name="date_in_past">The trip date is in the past.</string>
 
-    <string name="cruise_save_key">cruiseSave</string>
-    <string name="cruise_save_title">Save Cruise</string>
-    <string name="cruise_save_summary">Save the current cruise if you want to come back to it after another cruise.</string>
-    <string name="cruise_save_message">Save this cruise as: </string>
+    <string name="trip_save_key">tripSave</string>
+    <string name="trip_save_title">Save trip</string>
+    <string name="trip_save_summary">Save the current trip if you want to come back to it later.</string>
+    <string name="trip_save_message">Save this trip as: </string>
 
-    <string name="cruise_load_key">cruiseLoad</string>
-    <string name="cruise_load_title">Load a Cruise</string>
-    <string name="cruise_load_summary">Load a cruise from earlier.</string>
-    <string name="cruise_load_message">Pick the cruise you want to load</string>
+    <string name="trip_load_key">tripLoad</string>
+    <string name="trip_load_title">Load a trip</string>
+    <string name="trip_load_summary">Load a trip from earlier.</string>
+    <string name="trip_load_message">Pick the trip you want to load</string>
 
-    <string name="cruise_delete_key">cruiseDelete</string>
-    <string name="cruise_delete_title">Delete a Cruise</string>
-    <string name="cruise_delete_summary">Delete a cruise from earlier.</string>
-    <string name="cruise_delete_message">Pick the cruise you want to Delete</string>
+    <string name="trip_delete_key">tripDelete</string>
+    <string name="trip_delete_title">Delete a trip</string>
+    <string name="trip_delete_summary">Delete a trip from earlier.</string>
+    <string name="trip_delete_message">Pick the trip you want to Delete</string>
 
-    <string name="cruise_reset_key">cruiseReset</string>
-    <string name="cruise_reset_title">Reset Cruise</string>
-    <string name="cruise_reset_summary">Reset the current cruise if you want to start from scratch.</string>
-    <string name="cruise_reset_message">Reset this cruise? Make sure you saved before resetting.</string>
+    <string name="trip_reset_key">tripReset</string>
+    <string name="trip_reset_title">Reset trip</string>
+    <string name="trip_reset_summary">Reset the current trip if you want to start from scratch.</string>
+    <string name="trip_reset_message">Reset this trip? Make sure you saved before resetting.</string>
 
     <string name="save_confirm">Save</string>
     <string name="reset_confirm">Reset</string>
@@ -228,12 +228,12 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <string name="cruise_names">cruiseNames</string>
+    <string name="trip_names">tripNames</string>
     <string name="save_success">has been saved</string>
     <string name="save_failed">couldn\'t be saved</string>
     <string name="save_cancelled">Save Cancelled</string>
     <string name="current_name">currentName</string>
-    <string name="no_saved_cruises">There aren\'t any saved cruises yet</string>
+    <string name="no_saved_trips">There aren\'t any saved trips yet</string>
 
     <string name="delete_successful">was deleted successfully</string>
     <string name="delete_failed">couldn\'t be deleted</string>

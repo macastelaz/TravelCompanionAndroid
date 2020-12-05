@@ -27,7 +27,7 @@
             android:layout_alignParentStart="true"
             android:layout_toLeftOf="@+id/sort_preference"
             android:layout_toStartOf="@+id/sort_preference"/>
-        <com.castelcode.cruisecompanion.trip_checklists.trip_checklist_edit_activity.SortOrderSpinner
+        <com.castelcode.travelcompanion.trip_checklists.trip_checklist_edit_activity.SortOrderSpinner
             android:id="@+id/sort_preference"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -36,7 +36,7 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/spinner_border"
             android:layout_alignParentEnd="true">
-        </com.castelcode.cruisecompanion.trip_checklists.trip_checklist_edit_activity.SortOrderSpinner>
+        </com.castelcode.travelcompanion.trip_checklists.trip_checklist_edit_activity.SortOrderSpinner>
     </RelativeLayout>
 
     <ListView

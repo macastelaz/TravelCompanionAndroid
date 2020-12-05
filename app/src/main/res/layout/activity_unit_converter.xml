@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="com.castelcode.cruisecompanion.tile_activities.UnitConverter"
+    tools:context="com.castelcode.travelcompanion.tile_activities.UnitConverter"
     android:orientation="vertical"
     android:id="@+id/unit_converter">
 
@@ -30,13 +30,13 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.6"
+            android:layout_weight="1.5"
             android:id="@+id/original_value_fragment"/>
 
         <Spinner
             android:id="@+id/original_unit"
             android:layout_width="0dp"
-            android:layout_weight="0.4"
+            android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_border"/>
     </LinearLayout>
@@ -71,12 +71,12 @@
         <FrameLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.6"
+            android:layout_weight="1.5"
             android:id="@+id/desired_value_fragment"/>
         <Spinner
             android:id="@+id/desired_unit"
             android:layout_width="0dp"
-            android:layout_weight="0.4"
+            android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:background="@drawable/spinner_border"/>
     </LinearLayout>

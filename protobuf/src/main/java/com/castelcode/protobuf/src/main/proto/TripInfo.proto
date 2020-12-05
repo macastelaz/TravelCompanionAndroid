@@ -1,7 +1,7 @@
 syntax="proto3";
 
-package cruisecompanion;
-option java_package = "com.castelcode.cruisecompanion";
+package travelcompanion;
+option java_package = "com.castelcode.travelcompanion";
 option java_outer_classname = "TripInfoProtos";
 
 message SharedTripInfo {

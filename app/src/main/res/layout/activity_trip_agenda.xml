@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.castelcode.cruisecompanion.tile_activities.TripAgenda"
+    tools:context="com.castelcode.travelcompanion.tile_activities.TripAgenda"
     android:orientation="vertical"
     android:background="@android:color/black"
     android:id="@+id/trip_agenda">
